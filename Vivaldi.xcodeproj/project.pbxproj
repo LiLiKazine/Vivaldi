@@ -9,18 +9,22 @@
 /* Begin PBXBuildFile section */
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
-		22F5303A2B1592890094C4B1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530392B1592890094C4B1 /* Item.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
 		22F5303F2B15928A0094C4B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303E2B15928A0094C4B1 /* Preview Assets.xcassets */; };
+		22F530482B1592B20094C4B1 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530452B1592B20094C4B1 /* AuthView.swift */; };
+		22F5304A2B1592B20094C4B1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530472B1592B20094C4B1 /* Photo.swift */; };
+		22F5304C2B1593610094C4B1 /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5304B2B1593610094C4B1 /* Environments.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
 		22F530372B1592890094C4B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		22F530392B1592890094C4B1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		22F5303B2B15928A0094C4B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F5303E2B15928A0094C4B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		22F530452B1592B20094C4B1 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = SOURCE_ROOT; };
+		22F530472B1592B20094C4B1 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = SOURCE_ROOT; };
+		22F5304B2B1593610094C4B1 /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,9 @@
 			children = (
 				22F530352B1592890094C4B1 /* VivaldiApp.swift */,
 				22F530372B1592890094C4B1 /* ContentView.swift */,
-				22F530392B1592890094C4B1 /* Item.swift */,
+				22F530472B1592B20094C4B1 /* Photo.swift */,
+				22F530452B1592B20094C4B1 /* AuthView.swift */,
+				22F5304B2B1593610094C4B1 /* Environments.swift */,
 				22F5303B2B15928A0094C4B1 /* Assets.xcassets */,
 				22F5303D2B15928A0094C4B1 /* Preview Content */,
 			);
@@ -141,8 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				22F530382B1592890094C4B1 /* ContentView.swift in Sources */,
-				22F5303A2B1592890094C4B1 /* Item.swift in Sources */,
+				22F530482B1592B20094C4B1 /* AuthView.swift in Sources */,
 				22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */,
+				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
+				22F5304A2B1592B20094C4B1 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +287,7 @@
 				DEVELOPMENT_TEAM = PJBUF7JSHK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to use your face ID for decryption";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -308,6 +317,7 @@
 				DEVELOPMENT_TEAM = PJBUF7JSHK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to use your face ID for decryption";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
