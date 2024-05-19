@@ -7,23 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220565B82BFA29C900AFA143 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565B72BFA29C900AFA143 /* Photo.swift */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
 		22F5303F2B15928A0094C4B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303E2B15928A0094C4B1 /* Preview Assets.xcassets */; };
 		22F530482B1592B20094C4B1 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530452B1592B20094C4B1 /* AuthView.swift */; };
-		22F5304A2B1592B20094C4B1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530472B1592B20094C4B1 /* Photo.swift */; };
 		22F5304C2B1593610094C4B1 /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5304B2B1593610094C4B1 /* Environments.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		220565B72BFA29C900AFA143 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vivaldi.entitlements; sourceTree = "<group>"; };
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
 		22F530372B1592890094C4B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22F5303B2B15928A0094C4B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F5303E2B15928A0094C4B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22F530452B1592B20094C4B1 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = SOURCE_ROOT; };
-		22F530472B1592B20094C4B1 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = SOURCE_ROOT; };
 		22F5304B2B1593610094C4B1 /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220565B12BFA02C300AFA143 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				220565B72BFA29C900AFA143 /* Photo.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		22F530292B1592890094C4B1 = {
 			isa = PBXGroup;
 			children = (
@@ -57,11 +66,12 @@
 		22F530342B1592890094C4B1 /* Vivaldi */ = {
 			isa = PBXGroup;
 			children = (
+				22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */,
 				22F530352B1592890094C4B1 /* VivaldiApp.swift */,
 				22F530372B1592890094C4B1 /* ContentView.swift */,
-				22F530472B1592B20094C4B1 /* Photo.swift */,
 				22F530452B1592B20094C4B1 /* AuthView.swift */,
 				22F5304B2B1593610094C4B1 /* Environments.swift */,
+				220565B12BFA02C300AFA143 /* DB */,
 				22F5303B2B15928A0094C4B1 /* Assets.xcassets */,
 				22F5303D2B15928A0094C4B1 /* Preview Content */,
 			);
@@ -146,11 +156,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220565B82BFA29C900AFA143 /* Photo.swift in Sources */,
 				22F530382B1592890094C4B1 /* ContentView.swift in Sources */,
 				22F530482B1592B20094C4B1 /* AuthView.swift in Sources */,
 				22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */,
 				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
-				22F5304A2B1592B20094C4B1 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +291,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Vivaldi/Vivaldi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Vivaldi/Preview Content\"";
@@ -311,6 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Vivaldi/Vivaldi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Vivaldi/Preview Content\"";
