@@ -34,6 +34,7 @@ struct WaitToImportView: View {
             photoLibrary: .shared()
         )
         .onChange(of: items) { _, newValue in
+            if newValue.isEmpty { return }
             Task {
                 do {
                     try await inserter.insert(loadable: newValue)
@@ -41,6 +42,7 @@ struct WaitToImportView: View {
                     print("Insert failed: \(error)")
                 }
             }
+            self.items.removeAll()
         }
     }
 }
