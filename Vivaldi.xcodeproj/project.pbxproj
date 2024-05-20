@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		220565B82BFA29C900AFA143 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565B72BFA29C900AFA143 /* Photo.swift */; };
+		220565BB2BFA2BD700AFA143 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565BA2BFA2BD700AFA143 /* GalleryView.swift */; };
+		220565BD2BFA2D9900AFA143 /* WaitToImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565BC2BFA2D9900AFA143 /* WaitToImportView.swift */; };
+		220565BF2BFA30D900AFA143 /* AlbumItemInserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */; };
+		220565C12BFA360300AFA143 /* Archiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565C02BFA360300AFA143 /* Archiver.swift */; };
+		220565C32BFA371000AFA143 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565C22BFA371000AFA143 /* DateFormatters.swift */; };
+		220565C52BFB83E000AFA143 /* Data+Archiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565C42BFB83E000AFA143 /* Data+Archiver.swift */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
@@ -18,6 +24,12 @@
 
 /* Begin PBXFileReference section */
 		220565B72BFA29C900AFA143 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		220565BA2BFA2BD700AFA143 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		220565BC2BFA2D9900AFA143 /* WaitToImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitToImportView.swift; sourceTree = "<group>"; };
+		220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumItemInserter.swift; sourceTree = "<group>"; };
+		220565C02BFA360300AFA143 /* Archiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archiver.swift; sourceTree = "<group>"; };
+		220565C22BFA371000AFA143 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
+		220565C42BFB83E000AFA143 /* Data+Archiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Archiver.swift"; sourceTree = "<group>"; };
 		22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vivaldi.entitlements; sourceTree = "<group>"; };
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
@@ -47,6 +59,15 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
+		220565B92BFA2BAB00AFA143 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				220565BA2BFA2BD700AFA143 /* GalleryView.swift */,
+				220565BC2BFA2D9900AFA143 /* WaitToImportView.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		22F530292B1592890094C4B1 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +92,11 @@
 				22F530372B1592890094C4B1 /* ContentView.swift */,
 				22F530452B1592B20094C4B1 /* AuthView.swift */,
 				22F5304B2B1593610094C4B1 /* Environments.swift */,
+				220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */,
+				220565C02BFA360300AFA143 /* Archiver.swift */,
+				220565C42BFB83E000AFA143 /* Data+Archiver.swift */,
+				220565C22BFA371000AFA143 /* DateFormatters.swift */,
+				220565B92BFA2BAB00AFA143 /* Gallery */,
 				220565B12BFA02C300AFA143 /* DB */,
 				22F5303B2B15928A0094C4B1 /* Assets.xcassets */,
 				22F5303D2B15928A0094C4B1 /* Preview Content */,
@@ -157,10 +183,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				220565B82BFA29C900AFA143 /* Photo.swift in Sources */,
+				220565BB2BFA2BD700AFA143 /* GalleryView.swift in Sources */,
 				22F530382B1592890094C4B1 /* ContentView.swift in Sources */,
 				22F530482B1592B20094C4B1 /* AuthView.swift in Sources */,
 				22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */,
+				220565C12BFA360300AFA143 /* Archiver.swift in Sources */,
+				220565C32BFA371000AFA143 /* DateFormatters.swift in Sources */,
 				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
+				220565BF2BFA30D900AFA143 /* AlbumItemInserter.swift in Sources */,
+				220565C52BFB83E000AFA143 /* Data+Archiver.swift in Sources */,
+				220565BD2BFA2D9900AFA143 /* WaitToImportView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,7 @@ struct ContentView: View {
         if lockState.isLocked {
             AuthView()
         } else {
-            Text("Select an item")
+            GalleryView()
         }
     }
 

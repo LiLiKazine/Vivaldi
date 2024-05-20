@@ -8,5 +8,5 @@
 import SwiftUI
 
 class LockState: ObservableObject {
-    @Published var isLocked: Bool = true
+    @Published var isLocked: Bool = false
 }

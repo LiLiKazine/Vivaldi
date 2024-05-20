@@ -11,12 +11,12 @@ import SwiftData
 
 
 @Model public class Photo {
-    var date: Date
-    var name: String
-    var star: Bool
-    var pin: Bool
+    var date: Date = Date()
+    var name: String = "No name"
+    var star: Bool = false
+    var pin: Bool = false
     var dir: UUID?
-    var relativePath: String
+    var relativePath: String = ""
     var thumbRelativePath: String?
     
     public init(date: Date = Date(), name: String, relativePath: String, star: Bool = false, pin: Bool = false) {
