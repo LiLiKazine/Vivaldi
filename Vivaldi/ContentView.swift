@@ -16,7 +16,9 @@ struct ContentView: View {
         if lockState.isLocked {
             AuthView()
         } else {
-            GalleryView()
+            NavigationStack {
+                GalleryView()                
+            }
         }
     }
 

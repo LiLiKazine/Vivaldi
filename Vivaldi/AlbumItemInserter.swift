@@ -38,11 +38,11 @@ class AlbumItemInserterImp: AlbumItemInserter {
                 //TODO: throw error
                 continue
             }
-            let name = item.itemIdentifier ?? "No name"
             guard let data = try await item.load(type: Data.self) else {
                 //TODO: throw error
                 continue
             }
+            let name = item.itemIdentifier ?? "No name"
             let relativePath = try data.store(data, name: name, suffix: preferredType.preferredFilenameExtension)
             let photo = Photo(name: name, relativePath: relativePath)
             modelContext.insert(photo)

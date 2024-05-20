@@ -37,12 +37,14 @@ class Archiver {
     }
     
     func savingPath(of filename: String, suffix: String?, relativeTo dir: URL) -> String {
+        let filename = filename.replacingOccurrences(of: "/", with: "-")
         let intermediaDirectory = Date().text()
         var appendix: Int = 0
         var url = dir.appending(path: intermediaDirectory)
         repeat {
             defer { appendix += 1 }
             if appendix > 0 {
+                url.deleteLastPathComponent()
                 url.append(path: "\(filename)-\(appendix)")
             } else {
                 url.append(path: filename)

@@ -12,26 +12,27 @@ struct WaitToImportView: View {
     
     @State private var items: [PhotosPickerItem] = []
     
+    let hint: String
     let inserter: AlbumItemInserter
     let maxSelectionCount: Int?
     let matching: PHPickerFilter?
     
-    init(inserter: AlbumItemInserter, maxSelectionCount: Int? = 99, matching: PHPickerFilter? = .images) {
+    init(hint: String, inserter: AlbumItemInserter, maxSelectionCount: Int? = 99, matching: PHPickerFilter? = .images) {
+        self.hint = hint
         self.inserter = inserter
         self.maxSelectionCount = maxSelectionCount
         self.matching = matching
     }
     
     var body: some View {
-        VStack {
-            PhotosPicker(
-                "Import assets from album",
-                selection: $items,
-                maxSelectionCount: maxSelectionCount,
-                selectionBehavior: .ordered,
-                matching: matching
-            )
-        }
+        PhotosPicker(
+            hint,
+            selection: $items,
+            maxSelectionCount: maxSelectionCount,
+            selectionBehavior: .ordered,
+            matching: matching,
+            photoLibrary: .shared()
+        )
         .onChange(of: items) { _, newValue in
             Task {
                 do {
@@ -59,7 +60,7 @@ private class MockInserter: AlbumItemInserter {
 }
 
 #Preview {
-    WaitToImportView(inserter: MockInserter())
+    WaitToImportView(hint: "Import from album", inserter: MockInserter())
 }
 
 
