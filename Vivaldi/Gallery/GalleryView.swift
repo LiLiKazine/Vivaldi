@@ -28,7 +28,7 @@ struct GalleryView: View {
         if photos.isEmpty {
             importView(hint: "Import assets from album")
         } else {
-            Text(String(photos.count))
+            ShowcaseView(photos: photos)
         }
     }
     
