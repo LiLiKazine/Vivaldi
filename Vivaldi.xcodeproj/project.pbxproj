@@ -18,6 +18,8 @@
 		220565C92BFB963700AFA143 /* PhotoThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565C82BFB963700AFA143 /* PhotoThumbView.swift */; };
 		220565CB2BFB973D00AFA143 /* Photo+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565CA2BFB973D00AFA143 /* Photo+UI.swift */; };
 		220565CE2BFB983200AFA143 /* IKImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565CD2BFB983200AFA143 /* IKImage.swift */; };
+		220565D02BFC505900AFA143 /* IKImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565CF2BFC505900AFA143 /* IKImageRenderer.swift */; };
+		220565D22BFC511D00AFA143 /* IKImage+Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565D12BFC511D00AFA143 /* IKImage+Binder.swift */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		220565C82BFB963700AFA143 /* PhotoThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoThumbView.swift; sourceTree = "<group>"; };
 		220565CA2BFB973D00AFA143 /* Photo+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+UI.swift"; sourceTree = "<group>"; };
 		220565CD2BFB983200AFA143 /* IKImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKImage.swift; sourceTree = "<group>"; };
+		220565CF2BFC505900AFA143 /* IKImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKImageRenderer.swift; sourceTree = "<group>"; };
+		220565D12BFC511D00AFA143 /* IKImage+Binder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKImage+Binder.swift"; sourceTree = "<group>"; };
 		22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vivaldi.entitlements; sourceTree = "<group>"; };
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				220565CD2BFB983200AFA143 /* IKImage.swift */,
+				220565D12BFC511D00AFA143 /* IKImage+Binder.swift */,
+				220565CF2BFC505900AFA143 /* IKImageRenderer.swift */,
 			);
 			path = ImageKit;
 			sourceTree = "<group>";
@@ -210,12 +216,14 @@
 				220565C12BFA360300AFA143 /* Archiver.swift in Sources */,
 				220565C92BFB963700AFA143 /* PhotoThumbView.swift in Sources */,
 				220565C32BFA371000AFA143 /* DateFormatters.swift in Sources */,
+				220565D22BFC511D00AFA143 /* IKImage+Binder.swift in Sources */,
 				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
 				220565BF2BFA30D900AFA143 /* AlbumItemInserter.swift in Sources */,
 				220565CB2BFB973D00AFA143 /* Photo+UI.swift in Sources */,
 				220565C72BFB953B00AFA143 /* ShowcaseView.swift in Sources */,
 				220565C52BFB83E000AFA143 /* Data+Archiver.swift in Sources */,
 				220565BD2BFA2D9900AFA143 /* WaitToImportView.swift in Sources */,
+				220565D02BFC505900AFA143 /* IKImageRenderer.swift in Sources */,
 				220565CE2BFB983200AFA143 /* IKImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

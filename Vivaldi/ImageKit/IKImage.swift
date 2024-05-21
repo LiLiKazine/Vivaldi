@@ -20,8 +20,9 @@ struct IKImage: View {
     }
     
     var body: some View {
-        Text("Hello, World!")
-        
+        ZStack {
+            IKImageRenderer()
+        }
     }
 }
 
@@ -95,14 +96,15 @@ protocol ThumbnailGenerator {
 
 protocol ImageMemoryCache {
     
-    var totalCostLimit: Int { get }
-    var countLimit: Int { get }
+//    var onCacheExpire: (Data, String) -> Void { get set }
     
-    var onCacheExpire: (Data, String) -> Void { get set }
-    
-    func cache(original data: String, key: String)
+    func cache(image data: String, key: String)
     
     func cache(thumbnail data: String, key: String)
+    
+    func image(for key: String) -> Data?
+    
+    func thumbnail(for key: String) -> Data?
     
 }
 
