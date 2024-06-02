@@ -22,36 +22,21 @@ struct ShowcaseView: View {
             ) {
                 ForEach(photos) { photo in
                     VStack {
-                        IKImage(source: .async(LocalImageDataSource(relativePath: photo.relativePath)))
-                            .resizable()
+//                        IKImage(source: photo.create())
+//                            .resizable()
+                        Thumbnail(photo: photo)
                             .frame(height: 100)
                             
                         Text(photo.name)
                             .lineLimit(1)
                             .truncationMode(.middle)
+                        
                     }
                 }
             }
         }
         .padding()
     }
-}
-
-class LocalImageDataSource: AsyncImageDataSource {
-    
-    var cacheKey: String? { relativePath }
-    
-    private let relativePath: String
-    
-    init(relativePath: String) {
-        self.relativePath = relativePath
-    }
-    
-    func retrive() async throws -> Data {
-        try Data(from: relativePath)
-    }
-    
-    
 }
 
 #Preview {
