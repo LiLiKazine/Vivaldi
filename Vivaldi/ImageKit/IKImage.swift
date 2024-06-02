@@ -21,8 +21,34 @@ struct IKImage: View {
     
     var body: some View {
         ZStack {
-            IKImageRenderer()
+            IKImageRenderer(context: context)
         }
+    }
+}
+
+extension IKImage {
+    public func resizable(
+        capInsets: EdgeInsets = EdgeInsets(),
+        resizingMode: Image.ResizingMode = .stretch) -> IKImage
+    {
+        configure { $0.resizable(capInsets: capInsets, resizingMode: resizingMode) }
+    }
+
+    public func renderingMode(_ renderingMode: Image.TemplateRenderingMode?) -> IKImage {
+        configure { $0.renderingMode(renderingMode) }
+    }
+
+    public func interpolation(_ interpolation: Image.Interpolation) -> IKImage {
+        configure { $0.interpolation(interpolation) }
+    }
+
+    public func antialiased(_ isAntialiased: Bool) -> IKImage {
+        configure { $0.antialiased(isAntialiased) }
+    }
+    
+    public func configure(_ block: @escaping (Image) -> Image) -> Self {
+        context.configurations.append(block)
+        return self
     }
 }
 
@@ -52,7 +78,7 @@ extension IKImage {
 
 extension IKImage {
     enum Source {
-        case image(Image)
+        case systemImage(String)
         case async(AsyncImageDataSource)
     }
     
@@ -81,7 +107,7 @@ extension IKImage {
 }
 
 #Preview {
-    IKImage(source: .image(Image(systemName: "doc.text.image")))
+    IKImage(source: .systemImage("doc.text.image"))
 }
 
 

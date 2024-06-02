@@ -13,4 +13,10 @@ extension Data {
         return try Archiver.shared.store(data, name: name, suffix: suffix, directory: directory)
     }
     
+    
+    
+    init(from relativePath: String, directory: FileManager.SearchPathDirectory = .documentDirectory) throws {
+        self = try Archiver.shared.fetch(from: relativePath, directory: directory)
+    }
+    
 }

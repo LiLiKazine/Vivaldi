@@ -30,6 +30,12 @@ class Archiver {
         try data.write(to: url, options: .withoutOverwriting)
     }
     
+    func fetch(from relativePath: String, directory: FileManager.SearchPathDirectory = .documentDirectory) throws -> Data {
+        var url = try directory.prefferredDirectory()
+        url.append(path: relativePath)
+        return try Data(contentsOf: url)
+    }
+    
     func savingURL(of path: String, relativeTo directory: FileManager.SearchPathDirectory = .documentDirectory) throws -> URL {
         var url = try directory.prefferredDirectory()
         url.append(path: path)
