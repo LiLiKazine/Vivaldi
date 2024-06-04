@@ -13,6 +13,9 @@ struct ShowcaseView: View {
     
     let photos: [Photo]
     
+    @State private var previewURL: URL?
+    var urlList: [URL] { photos.previewURLs() }
+    
     var body: some View {
         
         ScrollView {
@@ -22,10 +25,10 @@ struct ShowcaseView: View {
             ) {
                 ForEach(photos) { photo in
                     VStack {
-//                        IKImage(source: photo.create())
-//                            .resizable()
                         Thumbnail(photo: photo)
-                            .frame(height: 100)
+                            .onTapGesture {
+                                preview(photo: photo)
+                            }
                             
                         Text(photo.name)
                             .lineLimit(1)
@@ -35,7 +38,17 @@ struct ShowcaseView: View {
                 }
             }
         }
+        
         .padding()
+        .quickLookPreview($previewURL, in: urlList)
+    }
+    
+    private func preview(photo: Photo) {
+        do {
+            previewURL = try photo.savingURL()
+        } catch {
+            print(error)
+        }
     }
 }
 

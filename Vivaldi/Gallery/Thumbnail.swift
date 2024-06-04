@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ImageKit
+import QuickLook
 
 struct Thumbnail<Content, Context>: View where Content: View {
     
@@ -20,6 +21,8 @@ struct Thumbnail<Content, Context>: View where Content: View {
     
     var body: some View {
         content(context)
+            .frame(height: 100)
+
     }
 }
 
