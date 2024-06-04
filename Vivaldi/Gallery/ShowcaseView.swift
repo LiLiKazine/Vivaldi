@@ -18,7 +18,7 @@ struct ShowcaseView: View {
     
     var body: some View {
         
-        container { photo in
+        ShowCaseContainer(data: photos) { photo in
             Thumbnail(photo: photo)
                 .onTapGesture {
                     preview(photo: photo)
@@ -28,19 +28,26 @@ struct ShowcaseView: View {
         .quickLookPreview($previewURL, in: urlList)
     }
     
-    private func container<Item>(of item: @escaping (Photo) -> Item) -> some View where Item: View {
-        ScrollVGrid(columns: columns) {
-            ForEach(photos) { photo in
-                item(photo)
-            }
-        }
-    }
-    
     private func preview(photo: Photo) {
         do {
             previewURL = try photo.savingURL()
         } catch {
             print(error)
+        }
+    }
+}
+
+private struct ShowCaseContainer<Data, Item>: View where Data: RandomAccessCollection, Data.Element: Identifiable, Item: View {
+    
+    let data: Data
+    let columnCount: Int = 3
+    let item: (Data.Element) -> Item
+    
+    var columns: [GridItem] { Array(0..<3).map { _ in GridItem() } }
+    
+    var body: some View {
+        ScrollVGrid(columns: columns) {
+            ForEach(data) { item($0) }
         }
     }
 }
