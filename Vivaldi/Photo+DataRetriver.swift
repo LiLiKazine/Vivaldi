@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import ImageKit
 
 extension Photo {
     
-    func create() -> IKImage.Source {
-        return .async(LocalImageDataSource(relativePath: relativePath))
+    func retriver() -> DataRetriver {
+        return LocalDataRetriver(relativePath: relativePath)
     }
     
 }

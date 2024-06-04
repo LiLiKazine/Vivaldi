@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ImageKit
 
 struct Thumbnail<Content, Context>: View where Content: View {
     
@@ -26,7 +27,7 @@ extension Thumbnail<IKImage, Photo> {
     
     init(photo: Photo) {
         self.init(content: { photo in
-            IKImage(source: photo.create())
+            IKImage(retriver: photo.retriver())
                 .resizable()
         }, context: photo)
     }

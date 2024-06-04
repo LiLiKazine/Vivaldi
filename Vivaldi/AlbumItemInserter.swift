@@ -43,7 +43,7 @@ class AlbumItemInserterImp: AlbumItemInserter {
                 continue
             }
             let name = item.itemIdentifier ?? "No name"
-            let relativePath = try data.store(data, name: name, suffix: preferredType.preferredFilenameExtension)
+            let relativePath = try data.ak.store(using: name, suffix: preferredType.preferredFilenameExtension)
             let photo = Photo(name: name, relativePath: relativePath)
             modelContext.insert(photo)
         }
