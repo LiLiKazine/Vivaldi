@@ -7,32 +7,53 @@
 
 import SwiftUI
 import ImageKit
-import QuickLook
 
-struct Thumbnail<Content, Context>: View where Content: View {
+protocol ThumbnailRendererView: View {
+    associatedtype Context
+    static func create(from context: Context) -> Self
+}
+
+struct Thumbnail<Content>: View where Content: ThumbnailRendererView {
     
-    private let content: (Context) -> Content
-    private let context: Context
+    private let context: Content.Context
     
-    init(@ViewBuilder content: @escaping (Context) -> Content, context: Context) {
-        self.content = content
+    init(context: Content.Context) {
         self.context = context
     }
     
     var body: some View {
-        content(context)
-            .frame(height: 100)
+        VStack {
+            Content.create(from: context)
+                .frame(height: 100)
 
+        }
     }
 }
 
-extension Thumbnail<IKImage, Photo> {
+struct ImageThumbnail {
     
-    init(photo: Photo) {
-        self.init(content: { photo in
+    let photo: Photo
+    
+    var body: some View {
+        VStack {
             IKImage(retriver: photo.retriver())
                 .resizable()
-        }, context: photo)
+            Text(photo.name)
+                .lineLimit(1)
+                .truncationMode(.middle)
+        }
+    }
+    
+}
+extension ImageThumbnail : ThumbnailRendererView {
+    static func create(from context: Photo) -> ImageThumbnail {
+        ImageThumbnail(photo: context)
+    }
+}
+
+extension Thumbnail where Content == ImageThumbnail {
+    init(photo: Photo) {
+        self.init(context: photo)
     }
 }
 

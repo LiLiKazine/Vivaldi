@@ -17,6 +17,7 @@
 		2205663E2C0CAB6200AFA143 /* Photo++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205663D2C0CAB6200AFA143 /* Photo++.swift */; };
 		220566422C0CAD3600AFA143 /* EditText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220566412C0CAD3600AFA143 /* EditText.swift */; };
 		2268E43A2C0F3F3600337E07 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2268E4392C0F3F3600337E07 /* ImageKit */; };
+		22AD90672C0F4B4A00D2C162 /* ScrollGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90662C0F4B4A00D2C162 /* ScrollGrid.swift */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		220566392C0CA5E800AFA143 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		2205663D2C0CAB6200AFA143 /* Photo++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo++.swift"; sourceTree = "<group>"; };
 		220566412C0CAD3600AFA143 /* EditText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditText.swift; sourceTree = "<group>"; };
+		22AD90662C0F4B4A00D2C162 /* ScrollGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGrid.swift; sourceTree = "<group>"; };
 		22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vivaldi.entitlements; sourceTree = "<group>"; };
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
+		22AD90652C0F4B3200D2C162 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				22AD90662C0F4B4A00D2C162 /* ScrollGrid.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		22F530292B1592890094C4B1 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +114,7 @@
 				22F5304B2B1593610094C4B1 /* Environments.swift */,
 				220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */,
 				2205663D2C0CAB6200AFA143 /* Photo++.swift */,
+				22AD90652C0F4B3200D2C162 /* Widgets */,
 				220565B92BFA2BAB00AFA143 /* Gallery */,
 				220565B12BFA02C300AFA143 /* DB */,
 				22F5303B2B15928A0094C4B1 /* Assets.xcassets */,
@@ -204,6 +215,7 @@
 				2205663E2C0CAB6200AFA143 /* Photo++.swift in Sources */,
 				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
 				220566422C0CAD3600AFA143 /* EditText.swift in Sources */,
+				22AD90672C0F4B4A00D2C162 /* ScrollGrid.swift in Sources */,
 				220565BF2BFA30D900AFA143 /* AlbumItemInserter.swift in Sources */,
 				220565CB2BFB973D00AFA143 /* Photo+UI.swift in Sources */,
 				220565C72BFB953B00AFA143 /* ShowcaseView.swift in Sources */,

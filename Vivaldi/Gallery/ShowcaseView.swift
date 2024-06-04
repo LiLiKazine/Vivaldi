@@ -6,41 +6,34 @@
 //
 
 import SwiftUI
-
-private let COLUMNS = [GridItem(), GridItem(), GridItem()]
+import QuickLook
 
 struct ShowcaseView: View {
     
     let photos: [Photo]
     
     @State private var previewURL: URL?
-    var urlList: [URL] { photos.previewURLs() }
+    private var urlList: [URL] { photos.previewURLs() }
+    private let columns = [GridItem(), GridItem(), GridItem()]
     
     var body: some View {
         
-        ScrollView {
-            LazyVGrid(
-                columns: COLUMNS,
-                alignment: .center
-            ) {
-                ForEach(photos) { photo in
-                    VStack {
-                        Thumbnail(photo: photo)
-                            .onTapGesture {
-                                preview(photo: photo)
-                            }
-                            
-                        Text(photo.name)
-                            .lineLimit(1)
-                            .truncationMode(.middle)
-                        
-                    }
+        container { photo in
+            Thumbnail(photo: photo)
+                .onTapGesture {
+                    preview(photo: photo)
                 }
-            }
         }
-        
         .padding()
         .quickLookPreview($previewURL, in: urlList)
+    }
+    
+    private func container<Item>(of item: @escaping (Photo) -> Item) -> some View where Item: View {
+        ScrollVGrid(columns: columns) {
+            ForEach(photos) { photo in
+                item(photo)
+            }
+        }
     }
     
     private func preview(photo: Photo) {
@@ -51,6 +44,7 @@ struct ShowcaseView: View {
         }
     }
 }
+
 
 #Preview {
     ShowcaseView(photos: [])
