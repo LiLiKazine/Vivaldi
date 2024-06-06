@@ -43,7 +43,7 @@ private struct ShowCaseContainer<Data, Item>: View where Data: RandomAccessColle
     let columnCount: Int = 3
     let item: (Data.Element) -> Item
     
-    var columns: [GridItem] { Array(0..<3).map { _ in GridItem() } }
+    var columns: [GridItem] { Array(0..<columnCount).map { _ in GridItem() } }
     
     var body: some View {
         ScrollVGrid(columns: columns) {

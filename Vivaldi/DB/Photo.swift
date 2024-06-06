@@ -10,16 +10,17 @@ import Foundation
 import SwiftData
 
 
-@Model public class Photo {
-    var date: Date = Date()
-    var name: String = "No name"
-    var star: Bool = false
-    var pin: Bool = false
+@Model 
+final class Photo {
+    var date: Date
+    var name: String
+    var star: Bool
+    var pin: Bool
     var dir: UUID?
-    var relativePath: String = ""
+    var relativePath: String
     var thumbRelativePath: String?
     
-    public init(date: Date = Date(), name: String, relativePath: String, star: Bool = false, pin: Bool = false) {
+    init(date: Date = Date(), name: String = "untitled", relativePath: String, star: Bool = false, pin: Bool = false) {
         self.date = date
         self.name = name
         self.star = star

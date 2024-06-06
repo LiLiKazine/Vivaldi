@@ -17,7 +17,8 @@ struct ContentView: View {
             AuthView()
         } else {
             NavigationStack {
-                GalleryView()                
+                GalleryView()        
+                    .modelContainer(LocalContainer.sharedPhotoContainer)
             }
         }
     }

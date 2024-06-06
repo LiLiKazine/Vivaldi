@@ -23,8 +23,15 @@ struct EditText: View {
                 Text(text)
             }
         }
-        .onChange(of: isEditing) {
-            isFocused = isEditing
+        .onChange(of: isEditing) {  _, newValue in
+            if isFocused != newValue {
+                isFocused = newValue
+            }
+        }
+        .onChange(of: isFocused) { _, newValue in
+            if isEditing != newValue {
+                isEditing = newValue
+            }
         }
     }
 }

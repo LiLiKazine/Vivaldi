@@ -32,4 +32,11 @@ extension Array where Element == Photo {
         }
     }
     
+    mutating func update<Value>(keypath: WritableKeyPath<Element, Value>, to value: Value, where condition: (Element) -> Bool) {
+        for (i, element) in self.enumerated() {
+            guard condition(element) else { continue }
+            self[i][keyPath: keypath] = value
+        }
+    }
+    
 }

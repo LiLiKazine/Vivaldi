@@ -15,14 +15,6 @@ struct VivaldiApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [Photo.self]) { result in
-            switch result {
-            case .success(let success):
-                print("container setup success: \(success)")
-            case .failure(let failure):
-                print("container setup failed: \(failure.localizedDescription) \(failure)")
-            }
-        }
         .environmentObject(LockState())
     }
 }

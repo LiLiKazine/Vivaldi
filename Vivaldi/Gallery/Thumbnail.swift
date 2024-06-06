@@ -24,24 +24,38 @@ struct Thumbnail<Content>: View where Content: ThumbnailRendererView {
     var body: some View {
         VStack {
             Content.create(from: context)
-                .frame(height: 100)
-
         }
     }
 }
 
 struct ImageThumbnail {
     
-    let photo: Photo
+    @Bindable var photo: Photo
+    @State private var isEditing: Bool = false
     
     var body: some View {
         VStack {
-            IKImage(retriver: photo.retriver())
-                .resizable()
-            Text(photo.name)
-                .lineLimit(1)
-                .truncationMode(.middle)
+            Color.white
+                .frame(height: 100)
+                .overlay {
+                    IKImage(retriver: photo.retriver())
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                }
+                .clipped()
+            
+            EditText(isEditing: $isEditing, text: $photo.name)
+            .lineLimit(1)
+            .truncationMode(.middle)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isEditing = true
+            }
         }
+    }
+    
+    private func update(_ name: String) {
+        
     }
     
 }

@@ -10,8 +10,6 @@ import SwiftData
 
 struct GalleryView: View {
     
-    @Environment(\.modelContext) private var modelContext
-    
     @Query(sort: \Photo.date) var photos: [Photo]
     
     var body: some View {
@@ -29,11 +27,12 @@ struct GalleryView: View {
             importView(hint: "Import assets from album")
         } else {
             ShowcaseView(photos: photos)
+                .environment(\.photoInteractor, LocalContainer.sharedPhotoInteractor)
         }
     }
     
     func importView(hint: String) -> some View {
-        WaitToImportView(hint: hint, inserter: AlbumItemInserterImp(modelContext: modelContext))
+        WaitToImportView(hint: hint)
     }
 }
 

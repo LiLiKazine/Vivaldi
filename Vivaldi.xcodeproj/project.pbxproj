@@ -10,7 +10,6 @@
 		220565B82BFA29C900AFA143 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565B72BFA29C900AFA143 /* Photo.swift */; };
 		220565BB2BFA2BD700AFA143 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565BA2BFA2BD700AFA143 /* GalleryView.swift */; };
 		220565BD2BFA2D9900AFA143 /* WaitToImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565BC2BFA2D9900AFA143 /* WaitToImportView.swift */; };
-		220565BF2BFA30D900AFA143 /* AlbumItemInserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */; };
 		220565C72BFB953B00AFA143 /* ShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565C62BFB953B00AFA143 /* ShowcaseView.swift */; };
 		220565CB2BFB973D00AFA143 /* Photo+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220565CA2BFB973D00AFA143 /* Photo+UI.swift */; };
 		2205663A2C0CA5E800AFA143 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220566392C0CA5E800AFA143 /* Thumbnail.swift */; };
@@ -18,6 +17,10 @@
 		220566422C0CAD3600AFA143 /* EditText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220566412C0CAD3600AFA143 /* EditText.swift */; };
 		2268E43A2C0F3F3600337E07 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2268E4392C0F3F3600337E07 /* ImageKit */; };
 		22AD90672C0F4B4A00D2C162 /* ScrollGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90662C0F4B4A00D2C162 /* ScrollGrid.swift */; };
+		22AD906B2C10976800D2C162 /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD906A2C10976800D2C162 /* PhotoRepository.swift */; };
+		22AD906D2C11B1CE00D2C162 /* LocalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD906C2C11B1CE00D2C162 /* LocalContainer.swift */; };
+		22AD906F2C11B4B100D2C162 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD906E2C11B4B100D2C162 /* PhotoInteractor.swift */; };
+		22AD90722C11B63F00D2C162 /* LoadableTranferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90712C11B63F00D2C162 /* LoadableTranferable.swift */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
@@ -30,13 +33,16 @@
 		220565B72BFA29C900AFA143 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		220565BA2BFA2BD700AFA143 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		220565BC2BFA2D9900AFA143 /* WaitToImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitToImportView.swift; sourceTree = "<group>"; };
-		220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumItemInserter.swift; sourceTree = "<group>"; };
 		220565C62BFB953B00AFA143 /* ShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseView.swift; sourceTree = "<group>"; };
 		220565CA2BFB973D00AFA143 /* Photo+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+UI.swift"; sourceTree = "<group>"; };
 		220566392C0CA5E800AFA143 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		2205663D2C0CAB6200AFA143 /* Photo++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo++.swift"; sourceTree = "<group>"; };
 		220566412C0CAD3600AFA143 /* EditText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditText.swift; sourceTree = "<group>"; };
 		22AD90662C0F4B4A00D2C162 /* ScrollGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGrid.swift; sourceTree = "<group>"; };
+		22AD906A2C10976800D2C162 /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
+		22AD906C2C11B1CE00D2C162 /* LocalContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalContainer.swift; sourceTree = "<group>"; };
+		22AD906E2C11B4B100D2C162 /* PhotoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
+		22AD90712C11B63F00D2C162 /* LoadableTranferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableTranferable.swift; sourceTree = "<group>"; };
 		22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vivaldi.entitlements; sourceTree = "<group>"; };
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
@@ -62,6 +68,7 @@
 		220565B12BFA02C300AFA143 /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				22AD906C2C11B1CE00D2C162 /* LocalContainer.swift */,
 				220565B72BFA29C900AFA143 /* Photo.swift */,
 			);
 			path = DB;
@@ -88,6 +95,30 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		22AD90682C10928200D2C162 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				22AD906E2C11B4B100D2C162 /* PhotoInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		22AD90692C10929F00D2C162 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				22AD906A2C10976800D2C162 /* PhotoRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		22AD90702C11B52900D2C162 /* Miscs */ = {
+			isa = PBXGroup;
+			children = (
+				22AD90712C11B63F00D2C162 /* LoadableTranferable.swift */,
+			);
+			path = Miscs;
+			sourceTree = "<group>";
+		};
 		22F530292B1592890094C4B1 = {
 			isa = PBXGroup;
 			children = (
@@ -112,8 +143,10 @@
 				22F530372B1592890094C4B1 /* ContentView.swift */,
 				22F530452B1592B20094C4B1 /* AuthView.swift */,
 				22F5304B2B1593610094C4B1 /* Environments.swift */,
-				220565BE2BFA30D900AFA143 /* AlbumItemInserter.swift */,
 				2205663D2C0CAB6200AFA143 /* Photo++.swift */,
+				22AD90702C11B52900D2C162 /* Miscs */,
+				22AD90692C10929F00D2C162 /* Repositories */,
+				22AD90682C10928200D2C162 /* Interactors */,
 				22AD90652C0F4B3200D2C162 /* Widgets */,
 				220565B92BFA2BAB00AFA143 /* Gallery */,
 				220565B12BFA02C300AFA143 /* DB */,
@@ -208,17 +241,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				220565B82BFA29C900AFA143 /* Photo.swift in Sources */,
+				22AD906B2C10976800D2C162 /* PhotoRepository.swift in Sources */,
 				220565BB2BFA2BD700AFA143 /* GalleryView.swift in Sources */,
 				22F530382B1592890094C4B1 /* ContentView.swift in Sources */,
 				22F530482B1592B20094C4B1 /* AuthView.swift in Sources */,
+				22AD906F2C11B4B100D2C162 /* PhotoInteractor.swift in Sources */,
 				22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */,
 				2205663E2C0CAB6200AFA143 /* Photo++.swift in Sources */,
 				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
+				22AD90722C11B63F00D2C162 /* LoadableTranferable.swift in Sources */,
 				220566422C0CAD3600AFA143 /* EditText.swift in Sources */,
 				22AD90672C0F4B4A00D2C162 /* ScrollGrid.swift in Sources */,
-				220565BF2BFA30D900AFA143 /* AlbumItemInserter.swift in Sources */,
 				220565CB2BFB973D00AFA143 /* Photo+UI.swift in Sources */,
 				220565C72BFB953B00AFA143 /* ShowcaseView.swift in Sources */,
+				22AD906D2C11B1CE00D2C162 /* LocalContainer.swift in Sources */,
 				220565BD2BFA2D9900AFA143 /* WaitToImportView.swift in Sources */,
 				2205663A2C0CA5E800AFA143 /* Thumbnail.swift in Sources */,
 			);
