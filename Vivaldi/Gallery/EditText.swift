@@ -9,19 +9,34 @@ import SwiftUI
 
 struct EditText: View {
     
-    @Binding var isEditing: Bool
-    @Binding var text: String
+    let text: String
+    let onSubmit: (String) -> Void
     
+    init(_ text: String, onSubmit: @escaping (String) -> Void) {
+        self.text = text
+        self.onSubmit = onSubmit
+        self.inputText = text
+    }
+    
+    @State private var isEditing: Bool = false
+    @State private var inputText: String
     @FocusState private var isFocused: Bool
     
     var body: some View {
         Group {
             if isEditing {
-                TextField("", text: $text)
+                TextField("", text: $inputText)
                     .focused($isFocused)
+                    .onSubmit {
+                        onSubmit(inputText)
+                    }
             } else {
                 Text(text)
             }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isEditing = true
         }
         .onChange(of: isEditing) {  _, newValue in
             if isFocused != newValue {
@@ -33,9 +48,12 @@ struct EditText: View {
                 isEditing = newValue
             }
         }
+        .onChange(of: text) { _, newValue in
+            inputText = newValue
+        }
     }
 }
 
 #Preview {
-    EditText(isEditing: .constant(false), text: .constant("测试"))
+    EditText("untitled") { _ in }
 }

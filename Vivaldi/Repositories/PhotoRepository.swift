@@ -9,27 +9,33 @@ import Foundation
 import SwiftData
 
 protocol PhotoRepository {
-    func insert(loadable items: [LoadableTranferable]) async throws
+    func insert(photos: [Photo]) async throws
+    func delete(photoById id: PersistentIdentifier) async throws
+    func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws
 }
 
 @ModelActor
 actor PhotoRepositoryImp: PhotoRepository {
     
-    func insert(loadable items: [LoadableTranferable]) async throws {
-        for item in items {
-            guard let preferredType = item.supportedContentTypes.first else {
-                //TODO: throw error
-                continue
-            }
-            guard let data = try await item.load(type: Data.self) else {
-                //TODO: throw error
-                continue
-            }
-            let name = item.itemIdentifier ?? "untitled"
-            let relativePath = try data.ak.store(using: name, suffix: preferredType.preferredFilenameExtension)
-            let photo = Photo(name: name, relativePath: relativePath)
-            modelContext.insert(photo)
-        }
+    func insert(photos: [Photo]) async throws {
+        photos.forEach { modelContext.insert($0) }
     }
     
+    func delete(photoById id: PersistentIdentifier) async throws {
+        guard let photo = self[id, as: Photo.self] else {
+            //TODO: throw error
+            return
+        }
+        modelContext.delete(photo)
+    }
+    
+    func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws {
+        //TODO: update ui on changes
+        guard var photo = self[id, as: Photo.self] else {
+            //TODO: throw error
+            return
+        }
+        photo[keyPath: keypath] = value
+    }
+ 
 }

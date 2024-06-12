@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import SwiftData
 
 struct WaitToImportView: View {
     
@@ -47,15 +48,8 @@ extension PhotosPickerItem: LoadableTranferable {
     }
 }
 
-private class MockRepository: PhotoRepository {
-    func insert(loadable items: [LoadableTranferable]) async throws {
-        print("insert \(items.count) items")
-    }
-}
-
 #Preview {
     WaitToImportView(hint: "Import from album")
-        .environment(\.photoInteractor, MockPhotoInteractor())
 }
 
 

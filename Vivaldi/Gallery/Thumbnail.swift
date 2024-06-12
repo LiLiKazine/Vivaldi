@@ -30,8 +30,8 @@ struct Thumbnail<Content>: View where Content: ThumbnailRendererView {
 
 struct ImageThumbnail {
     
-    @Bindable var photo: Photo
-    @State private var isEditing: Bool = false
+    @Environment(\.photoInteractor) private var photoInteractor
+    let photo: Photo
     
     var body: some View {
         VStack {
@@ -44,13 +44,11 @@ struct ImageThumbnail {
                 }
                 .clipped()
             
-            EditText(isEditing: $isEditing, text: $photo.name)
+            EditText(photo.name) { name in
+                photoInteractor?.change(name: name, of: photo.id)
+            }
             .lineLimit(1)
             .truncationMode(.middle)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                isEditing = true
-            }
         }
     }
     

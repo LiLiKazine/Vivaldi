@@ -10,6 +10,8 @@ import QuickLook
 
 struct ShowcaseView: View {
     
+    @Environment(\.photoInteractor) private var photoInteractor
+    
     let photos: [Photo]
     
     @State private var previewURL: URL?

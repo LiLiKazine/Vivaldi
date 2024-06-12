@@ -27,7 +27,6 @@ struct GalleryView: View {
             importView(hint: "Import assets from album")
         } else {
             ShowcaseView(photos: photos)
-                .environment(\.photoInteractor, LocalContainer.sharedPhotoInteractor)
         }
     }
     

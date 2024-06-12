@@ -19,6 +19,7 @@ struct ContentView: View {
             NavigationStack {
                 GalleryView()        
                     .modelContainer(LocalContainer.sharedPhotoContainer)
+                    .environment(\.photoInteractor, LocalContainer.sharedPhotoInteractor)
             }
         }
     }
