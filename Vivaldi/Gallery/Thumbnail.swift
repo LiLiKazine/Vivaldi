@@ -34,26 +34,14 @@ struct ImageThumbnail {
     let photo: Photo
     
     var body: some View {
-        VStack {
-            Color.white
-                .frame(height: 100)
-                .overlay {
-                    IKImage(retriver: photo.retriver())
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                }
-                .clipped()
-            
-            EditText(photo.name) { name in
-                photoInteractor?.change(name: name, of: photo.id)
+        Color.white
+            .frame(height: 100)
+            .overlay {
+                IKImage(retriver: photo.retriver())
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
             }
-            .lineLimit(1)
-            .truncationMode(.middle)
-        }
-    }
-    
-    private func update(_ name: String) {
-        
+            .clipped()
     }
     
 }

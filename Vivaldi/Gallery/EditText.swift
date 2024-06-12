@@ -34,6 +34,7 @@ struct EditText: View {
                 Text(text)
             }
         }
+        .frame(height: 22)
         .contentShape(Rectangle())
         .onTapGesture {
             isEditing = true

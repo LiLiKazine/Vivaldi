@@ -15,25 +15,24 @@ struct WaitToImportView: View {
     
     @State private var items: [PhotosPickerItem] = []
     
-    let hint: String
     let maxSelectionCount: Int?
     let matching: PHPickerFilter?
     
-    init(hint: String, maxSelectionCount: Int? = 99, matching: PHPickerFilter? = .images) {
-        self.hint = hint
+    init(maxSelectionCount: Int? = 99, matching: PHPickerFilter? = .images) {
         self.maxSelectionCount = maxSelectionCount
         self.matching = matching
     }
     
     var body: some View {
         PhotosPicker(
-            hint,
             selection: $items,
             maxSelectionCount: maxSelectionCount,
             selectionBehavior: .ordered,
             matching: matching,
             photoLibrary: .shared()
-        )
+        ) {
+            Image(systemName: "plus")
+        }
         .onChange(of: items) { _, newValue in
             if newValue.isEmpty { return }
             photoInteractor?.onPick(items: newValue)
@@ -49,7 +48,7 @@ extension PhotosPickerItem: LoadableTranferable {
 }
 
 #Preview {
-    WaitToImportView(hint: "Import from album")
+    WaitToImportView()
 }
 
 
