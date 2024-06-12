@@ -31,8 +31,13 @@ actor PhotoRepositoryImp: PhotoRepository {
     
     func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws {
         //TODO: update ui on changes
-        guard var photo = self[id, as: Photo.self] else {
-            //TODO: throw error
+//        guard var photo = self[id, as: Photo.self] else {
+//            //TODO: throw error
+//            return
+//        }
+//        photo[keyPath: keypath] = value
+        let context = await modelContainer.mainContext
+        guard var photo = context.model(for: id) as? Photo else {
             return
         }
         photo[keyPath: keypath] = value
