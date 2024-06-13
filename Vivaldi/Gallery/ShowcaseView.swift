@@ -71,7 +71,7 @@ private struct ShowCaseContainer: View {
                         }
                     
                     EditText(photo.name) { name in
-                        photoInteractor?.change(name: name, of: photo.id)
+                        photoInteractor?.change(keypath: \.name, value: name, of: photo)
                     }
                     .lineLimit(1)
                     .truncationMode(.middle)

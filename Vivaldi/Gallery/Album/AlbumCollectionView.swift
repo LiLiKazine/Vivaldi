@@ -11,7 +11,9 @@ import SwiftData
 struct AlbumCollectionView: View {
     
     @Query(sort: \Album.date) private var albums: [Album]
+    
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.photoInteractor) private var photoInteractor
     
     @State private var presentAlbumCreationAlert: Bool = false
     @State private var albumCreationName = ""
@@ -46,6 +48,7 @@ struct AlbumCollectionView: View {
         .navigationDestination(for: Album?.self) { album in
             ShowcaseView(album: album)
                 .environment(\.modelContext, modelContext)
+                .environment(\.photoInteractor, photoInteractor)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

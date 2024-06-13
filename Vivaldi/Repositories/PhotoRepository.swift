@@ -11,7 +11,7 @@ import SwiftData
 protocol PhotoRepository {
     func insert(photos: [Photo]) async throws
     func delete(photoById id: PersistentIdentifier) async throws
-    func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws
+//    func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws
 }
 
 @ModelActor
@@ -29,6 +29,7 @@ actor PhotoRepositoryImp: PhotoRepository {
         modelContext.delete(photo)
     }
     
+    /*
     func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws {
         //TODO: update ui on changes
 //        guard var photo = self[id, as: Photo.self] else {
@@ -42,5 +43,6 @@ actor PhotoRepositoryImp: PhotoRepository {
         }
         photo[keyPath: keypath] = value
     }
+     */
  
 }

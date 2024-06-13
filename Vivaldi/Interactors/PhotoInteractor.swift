@@ -27,7 +27,7 @@ protocol PhotoInteractor {
     
     func onPick(items: [LoadableTranferable])
     func delete(photo: Photo)
-    func change(name: String, of id: PersistentIdentifier)
+    func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo)
 }
 
 final class PhotoInteractorImp : PhotoInteractor {
@@ -72,13 +72,15 @@ final class PhotoInteractorImp : PhotoInteractor {
         }
     }
     
-    func change(name: String, of id: PersistentIdentifier) {
-        Task {
-            do {
-                try await photoRepo.change(keypath: \.name, value: name, of: id)
-            } catch {
-                print("Change failed: \(error)")
-            }
-        }
+    func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo) {
+        print("called here")
+        photo[keyPath: keypath] = value
+//        Task {
+//            do {
+//                try await photoRepo.change(keypath: \.name, value: name, of: id)
+//            } catch {
+//                print("Change failed: \(error)")
+//            }
+//        }
     }
 }
