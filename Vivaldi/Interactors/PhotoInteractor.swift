@@ -21,25 +21,24 @@ extension EnvironmentValues {
 
 protocol PhotoInteractor {
     
-    #if DEBUG
-    var photoRepo: PhotoRepository { get }
-    #endif
-    
     func onPick(items: [LoadableTranferable])
     func delete(photo: Photo)
     func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo)
+    
+    func create(albumWithName name: String)
 }
 
 final class PhotoInteractorImp : PhotoInteractor {
     
     let photoRepo: PhotoRepository
+    let albumRepo: AlbumRepository
     
-    init(photoRepo: PhotoRepository) {
+    init(photoRepo: PhotoRepository, albumRepo: AlbumRepository) {
         self.photoRepo = photoRepo
+        self.albumRepo = albumRepo
     }
     
     func onPick(items: [LoadableTranferable]) {
-        print(items)
         Task {
             do {
                 let photos = try await items.asyncCompactMap { item -> Photo? in
@@ -73,14 +72,17 @@ final class PhotoInteractorImp : PhotoInteractor {
     }
     
     func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo) {
-        print("called here")
         photo[keyPath: keypath] = value
-//        Task {
-//            do {
-//                try await photoRepo.change(keypath: \.name, value: name, of: id)
-//            } catch {
-//                print("Change failed: \(error)")
-//            }
-//        }
+    }
+    
+    func create(albumWithName name: String) {
+        Task {
+            let album = Album(name: name)
+            do {
+                try await albumRepo.create(album: album)
+            } catch {
+                print("Create album with name: \(name) failed, error: \(error)")
+            }
+        }
     }
 }

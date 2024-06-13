@@ -15,8 +15,7 @@ struct AlbumCollectionView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.photoInteractor) private var photoInteractor
     
-    @State private var presentAlbumCreationAlert: Bool = false
-    @State private var albumCreationName = ""
+    @State private var presentAlbumCreationSheet: Bool = false
     
     var body: some View {
         
@@ -34,17 +33,9 @@ struct AlbumCollectionView: View {
             }
         }
         .padding()
-        .alert("Create Album", isPresented: $presentAlbumCreationAlert, actions: {
-                TextField("name", text: $albumCreationName)
-                Button("Confirm") {
-                    saveAlbum(with: albumCreationName)
-                    albumCreationName = ""
-                }
-                .disabled(albumCreationName.isEmpty)
-                Button("Cancel") {
-                    albumCreationName = ""
-                }
-        })
+        .sheet(isPresented: $presentAlbumCreationSheet, title: "Create album", hint: "name") { name in
+            saveAlbum(with: name)
+        }
         .navigationDestination(for: Album?.self) { album in
             ShowcaseView(album: album)
                 .environment(\.modelContext, modelContext)
@@ -54,14 +45,14 @@ struct AlbumCollectionView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Image(systemName: "plus")
                     .onTapGesture {
-                        presentAlbumCreationAlert = true
+                        presentAlbumCreationSheet = true
                     }
             }
         }
     }
     
     private func saveAlbum(with name: String) {
-        
+        photoInteractor?.create(albumWithName: name)
     }
 }
 
