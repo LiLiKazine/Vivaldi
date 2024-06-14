@@ -21,13 +21,11 @@ struct AlbumCollectionView: View {
         
         VStack(alignment: .leading) {
             ScrollHGrid(rows: rows, alignment: .top, spacing: 8) {
-                NavigationLink(value: Optional.some(Optional<Album>.none)) {
-                    AlbumView(album: nil)
-                }
+                
+                WrappedAlbumView(album: nil)
+                
                 ForEach(albums) { album in
-                    NavigationLink(value: Optional.some(Optional.some(album))) {
-                        AlbumView(album: album)
-                    }
+                    WrappedAlbumView(album: album)
                 }
             }
         }
@@ -42,10 +40,11 @@ struct AlbumCollectionView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Image(systemName: "plus")
-                    .onTapGesture {
-                        presentAlbumCreationSheet = true
-                    }
+                Button {
+                    presentAlbumCreationSheet = true
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }
@@ -58,6 +57,29 @@ struct AlbumCollectionView: View {
 extension AlbumCollectionView {
     private var rowCount: Int { 2 }
     private var rows: [GridItem] { Array(0..<rowCount).map { _ in GridItem(.fixed(100), spacing: 8) } }
+}
+
+private struct WrappedAlbumView: View {
+    
+    let album: Album?
+    
+    @Environment(\.photoInteractor) private var photoInteractor
+    
+    var body: some View {
+        NavigationLink(value: Optional.some(album)) {
+            Menu {
+                Button("Delete", role: .destructive) {
+                    if let album {
+                        photoInteractor?.delete(album: album)
+                    }
+                }
+                .disabled(album == nil)
+            } label: {
+                AlbumView(album: album)
+            }
+        }
+    }
+    
 }
 
 #Preview {

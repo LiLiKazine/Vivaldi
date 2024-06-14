@@ -39,7 +39,6 @@ private struct InputSheet: View {
             } label: {
                 Text("Cancel")
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(.black)
             }
             .buttonStyle(.bordered)
         }

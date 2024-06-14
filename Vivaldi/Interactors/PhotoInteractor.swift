@@ -26,6 +26,7 @@ protocol PhotoInteractor {
     func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo)
     
     func create(albumWithName name: String)
+    func delete(album: Album)
 }
 
 final class PhotoInteractorImp : PhotoInteractor {
@@ -83,6 +84,12 @@ final class PhotoInteractorImp : PhotoInteractor {
             } catch {
                 print("Create album with name: \(name) failed, error: \(error)")
             }
+        }
+    }
+    
+    func delete(album: Album) {
+        Task {
+            try await albumRepo.delete(albumById: album.id)
         }
     }
 }
