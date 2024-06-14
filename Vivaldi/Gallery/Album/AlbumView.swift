@@ -12,7 +12,7 @@ struct AlbumView: View {
     let album: Album?
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if let lastPhoto = album?.photos.last {
                 Thumbnail(photo: lastPhoto)
             } else {
@@ -22,12 +22,12 @@ struct AlbumView: View {
             }
             
             Text(album?.name ?? "All")
+                .truncationMode(.middle)
             
-            if let count = album?.photos.count {
-                Text(String(count))
-                    .font(.caption)
-            }
+            Text(album?.photoCountStr ?? "-")
+                .font(.caption)
         }
+        .frame(width: 100)
     }
 }
 

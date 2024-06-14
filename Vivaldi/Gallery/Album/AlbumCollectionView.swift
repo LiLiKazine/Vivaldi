@@ -24,9 +24,8 @@ struct AlbumCollectionView: View {
                 NavigationLink(value: Optional.some(Optional<Album>.none)) {
                     AlbumView(album: nil)
                 }
-                
                 ForEach(albums) { album in
-                    NavigationLink(value: Optional.some(album)) {
+                    NavigationLink(value: Optional.some(Optional.some(album))) {
                         AlbumView(album: album)
                     }
                 }

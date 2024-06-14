@@ -27,6 +27,8 @@
 		22AD90B52C199FAD00D2C162 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90B42C199FAD00D2C162 /* AlbumView.swift */; };
 		22AD90B72C1B23B800D2C162 /* AlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90B62C1B23B800D2C162 /* AlbumRepository.swift */; };
 		22AD90B92C1B2BC700D2C162 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90B82C1B2BC700D2C162 /* Widgets.swift */; };
+		22AD90BB2C1C1F3F00D2C162 /* Int++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90BA2C1C1F3F00D2C162 /* Int++.swift */; };
+		22AD90BD2C1C1FD500D2C162 /* Album++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90BC2C1C1FD500D2C162 /* Album++.swift */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 		22AD90B42C199FAD00D2C162 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		22AD90B62C1B23B800D2C162 /* AlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRepository.swift; sourceTree = "<group>"; };
 		22AD90B82C1B2BC700D2C162 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
+		22AD90BA2C1C1F3F00D2C162 /* Int++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int++.swift"; sourceTree = "<group>"; };
+		22AD90BC2C1C1FD500D2C162 /* Album++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album++.swift"; sourceTree = "<group>"; };
 		22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vivaldi.entitlements; sourceTree = "<group>"; };
 		22F530322B1592890094C4B1 /* Vivaldi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivaldi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F530352B1592890094C4B1 /* VivaldiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaldiApp.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				22AD90712C11B63F00D2C162 /* LoadableTranferable.swift */,
 				22AD90732C11F52300D2C162 /* Utils.swift */,
 				22AD90B82C1B2BC700D2C162 /* Widgets.swift */,
+				22AD90BA2C1C1F3F00D2C162 /* Int++.swift */,
 			);
 			path = Miscs;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				22F530452B1592B20094C4B1 /* AuthView.swift */,
 				22F5304B2B1593610094C4B1 /* Environments.swift */,
 				2205663D2C0CAB6200AFA143 /* Photo++.swift */,
+				22AD90BC2C1C1FD500D2C162 /* Album++.swift */,
 				22AD90702C11B52900D2C162 /* Miscs */,
 				22AD90692C10929F00D2C162 /* Repositories */,
 				22AD90682C10928200D2C162 /* Interactors */,
@@ -273,11 +279,13 @@
 				22AD90B52C199FAD00D2C162 /* AlbumView.swift in Sources */,
 				22F530382B1592890094C4B1 /* ContentView.swift in Sources */,
 				22F530482B1592B20094C4B1 /* AuthView.swift in Sources */,
+				22AD90BB2C1C1F3F00D2C162 /* Int++.swift in Sources */,
 				22AD906F2C11B4B100D2C162 /* PhotoInteractor.swift in Sources */,
 				22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */,
 				22AD90B92C1B2BC700D2C162 /* Widgets.swift in Sources */,
 				2205663E2C0CAB6200AFA143 /* Photo++.swift in Sources */,
 				22AD90B02C198F0800D2C162 /* AlbumCollectionView.swift in Sources */,
+				22AD90BD2C1C1FD500D2C162 /* Album++.swift in Sources */,
 				22F5304C2B1593610094C4B1 /* Environments.swift in Sources */,
 				22AD90722C11B63F00D2C162 /* LoadableTranferable.swift in Sources */,
 				220566422C0CAD3600AFA143 /* EditText.swift in Sources */,
