@@ -66,18 +66,23 @@ private struct ShowCaseContainer: View {
     var body: some View {
         ScrollVGrid(columns: columns) {
             ForEach(photos) { photo in
-                VStack {
-                    Thumbnail(photo: photo)
-                        .onTapGesture {
-                            preview(photo: photo)
-                        }
-                    
-                    EditText(photo.name) { name in
-                        photoInteractor?.change(keypath: \.name, value: name, of: photo)
+                Menu {
+                    Button("Delete", role: .destructive) {
+                        photoInteractor?.delete(photo: photo)
                     }
-                    .lineLimit(1)
-                    .truncationMode(.middle)
+                } label: {
+                    VStack {
+                        Thumbnail(photo: photo)
+                        EditText(photo.name) { name in
+                            photoInteractor?.change(keypath: \.name, value: name, of: photo)
+                        }
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                    }
+                } primaryAction: {
+                    preview(photo: photo)
                 }
+
             }
         }
         .padding()
