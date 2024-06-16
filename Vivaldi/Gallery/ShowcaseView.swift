@@ -13,22 +13,24 @@ struct ShowcaseView: View {
     
     let album: Album?
     
+    @Environment(\.photoInteractor) private var photoInteractor
+    
     var body: some View {
-        
-        if let album {
-            PhotoInAlbumShowcaseView(album: album)
-                .navigationTitle(album.name)
-        } else {
-            AllPhotoShowcaseView()
-                .navigationTitle("All")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Image(systemName: "plus")
-                            .onTapGesture {
-                                print("showcase")
-                            }
-                    }
+        Group {
+            if let album {
+                PhotoInAlbumShowcaseView(album: album)
+                    .navigationTitle(album.name)
+            } else {
+                AllPhotoShowcaseView()
+                    .navigationTitle("All")
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                WaitToImportView { items in
+                    photoInteractor?.onPick(items: items, in: album)
                 }
+            }
         }
     }
     

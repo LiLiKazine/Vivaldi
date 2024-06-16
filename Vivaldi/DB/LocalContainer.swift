@@ -10,22 +10,12 @@ import SwiftData
 
 class LocalContainer {
     
-    static let sharedPhotoContainer : ModelContainer = {
-        let schema = Schema([Photo.self])
-        let config = ModelConfiguration(schema: schema)
+    static let sharedContainer : ModelContainer = {
         do {
-            return try ModelContainer(for: schema, configurations: config)
-        } catch {
-            print("container setup failed: \(error.localizedDescription) \(error)")
-            fatalError(error.localizedDescription)
-        }
-    }()
-    
-    static let sharedAlbumContainer : ModelContainer = {
-        let schema = Schema([Album.self])
-        let config = ModelConfiguration(schema: schema)
-        do {
-            return try ModelContainer(for: schema, configurations: config)
+            return try ModelContainer(
+                for: Photo.self, Album.self,
+                configurations: ModelConfiguration(), ModelConfiguration()
+            )
         } catch {
             print("container setup failed: \(error.localizedDescription) \(error)")
             fatalError(error.localizedDescription)
@@ -33,11 +23,11 @@ class LocalContainer {
     }()
     
     static let sharedPhotoRepo : PhotoRepository = {
-        return PhotoRepositoryImp(modelContainer: sharedPhotoContainer)
+        return PhotoRepositoryImp(modelContainer: sharedContainer)
     }()
     
     static let sharedAlbumRepo : AlbumRepository = {
-        return AlbumRepositoryImp(modelContainer: sharedAlbumContainer)
+        return AlbumRepositoryImp(modelContainer: sharedContainer)
     }()
     
     static let sharedPhotoInteractor : PhotoInteractor = {

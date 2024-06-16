@@ -10,17 +10,21 @@ import PhotosUI
 import SwiftData
 
 struct WaitToImportView: View {
-    
-    @Environment(\.photoInteractor) private var photoInteractor
-    
+        
     @State private var items: [PhotosPickerItem] = []
     
     let maxSelectionCount: Int?
     let matching: PHPickerFilter?
+    let onSelected: ([PhotosPickerItem]) -> Void
     
-    init(maxSelectionCount: Int? = 99, matching: PHPickerFilter? = .images) {
+    init(
+        maxSelectionCount: Int? = nil,
+        matching: PHPickerFilter? = .images,
+        onSelected: @escaping ([PhotosPickerItem]) -> Void
+    ) {
         self.maxSelectionCount = maxSelectionCount
         self.matching = matching
+        self.onSelected = onSelected
     }
     
     var body: some View {
@@ -35,7 +39,7 @@ struct WaitToImportView: View {
         }
         .onChange(of: items) { _, newValue in
             if newValue.isEmpty { return }
-            photoInteractor?.onPick(items: newValue)
+            onSelected(newValue)
             self.items.removeAll()
         }
     }
@@ -48,7 +52,7 @@ extension PhotosPickerItem: LoadableTranferable {
 }
 
 #Preview {
-    WaitToImportView()
+    WaitToImportView { _ in }
 }
 
 

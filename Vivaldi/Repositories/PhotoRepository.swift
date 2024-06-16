@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 protocol PhotoRepository {
-    func insert(photos: [Photo]) async throws
+    func insert(photos: [Photo], in album: Album?) async throws
     func delete(photoById id: PersistentIdentifier) async throws
     
 //    func change<Value>(keypath: WritableKeyPath<Photo, Value>, value: Value, of id: PersistentIdentifier) async throws
@@ -18,8 +18,12 @@ protocol PhotoRepository {
 @ModelActor
 actor PhotoRepositoryImp: PhotoRepository {
     
-    func insert(photos: [Photo]) async throws {
+    func insert(photos: [Photo], in album: Album?) async throws {
         photos.forEach { modelContext.insert($0) }
+        if let album, let contextAlbum = self[album.id, as: Album.self] {
+            photos.forEach { $0.albums.append(contextAlbum) }
+        }
+        //FIXME: update ui
     }
     
     func delete(photoById id: PersistentIdentifier) async throws {

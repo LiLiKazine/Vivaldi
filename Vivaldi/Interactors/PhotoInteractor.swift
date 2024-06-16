@@ -21,7 +21,7 @@ extension EnvironmentValues {
 
 protocol PhotoInteractor {
     
-    func onPick(items: [LoadableTranferable])
+    func onPick(items: [LoadableTranferable], in album: Album?)
     func delete(photo: Photo)
     func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo)
     
@@ -39,7 +39,7 @@ final class PhotoInteractorImp : PhotoInteractor {
         self.albumRepo = albumRepo
     }
     
-    func onPick(items: [LoadableTranferable]) {
+    func onPick(items: [LoadableTranferable], in album: Album?) {
         Task {
             do {
                 let photos = try await items.asyncCompactMap { item -> Photo? in
@@ -55,7 +55,7 @@ final class PhotoInteractorImp : PhotoInteractor {
                     let relativePath = try data.ak.store(using: name, suffix: preferredType.preferredFilenameExtension)
                     return Photo(name: name, relativePath: relativePath)
                 }
-                try await photoRepo.insert(photos: photos)
+                try await photoRepo.insert(photos: photos, in: album)
             } catch {
                 print("Insert failed: \(error)")
             }
