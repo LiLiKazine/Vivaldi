@@ -14,6 +14,7 @@ struct ShowcaseView: View {
     let album: Album?
     
     @Environment(\.photoInteractor) private var photoInteractor
+    @Environment(UIConfiguration.self) private var uiConfiguration
     
     var body: some View {
         Group {
@@ -28,7 +29,7 @@ struct ShowcaseView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 WaitToImportView { items in
-                    photoInteractor?.onPick(items: items, in: album)
+                    photoInteractor?.onPick(items: items, in: album, thumbnailHeight: uiConfiguration.photoFrameSize.height)
                 }
             }
         }
@@ -58,9 +59,10 @@ private struct ShowCaseContainer: View {
     @State private var previewURL: URL?
     private var urlList: [URL] { photos.previewURLs() }
     
-    private let columnCount: Int = 3
+    private var columnCount: Int { uiConfiguration.photoColumns }
     private var columns: [GridItem] { Array(0..<columnCount).map { _ in GridItem() } }
     
+    @Environment(UIConfiguration.self) private var uiConfiguration
     @Environment(\.photoInteractor) private var photoInteractor
 
     var body: some View {

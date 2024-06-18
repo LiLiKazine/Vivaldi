@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ImageKit
 
 private struct PhotoInteractorEnvironmentKey: EnvironmentKey {
     static var defaultValue: PhotoInteractor?
@@ -21,7 +22,7 @@ extension EnvironmentValues {
 
 protocol PhotoInteractor {
     
-    func onPick(items: [LoadableTranferable], in album: Album?)
+    func onPick(items: [LoadableTranferable], in album: Album?, thumbnailHeight: CGFloat?)
     func delete(photo: Photo)
     func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo)
     
@@ -39,7 +40,7 @@ final class PhotoInteractorImp : PhotoInteractor {
         self.albumRepo = albumRepo
     }
     
-    func onPick(items: [LoadableTranferable], in album: Album?) {
+    func onPick(items: [LoadableTranferable], in album: Album?, thumbnailHeight: CGFloat?) {
         Task {
             do {
                 let photos = try await items.asyncCompactMap { item -> Photo? in
@@ -53,7 +54,17 @@ final class PhotoInteractorImp : PhotoInteractor {
                     }
                     let name = item.itemIdentifier ?? "untitled"
                     let relativePath = try data.ak.store(using: name, suffix: preferredType.preferredFilenameExtension)
-                    return Photo(name: name, relativePath: relativePath)
+                    let photo = Photo(name: name, relativePath: relativePath)
+                    do {
+                        if let thumbnailHeight,
+                           let thumbnail = data.ik.jpeg(ratio: .fixedHeight(thumbnailHeight), quality: 0.5) {
+                            let thumbRelativePath = try thumbnail.ak.store(using: "\(name)_thumb", suffix: "jpeg")
+                            photo.thumbRelativePath = thumbRelativePath
+                        }
+                    } catch {
+                        print("Store thumnail failed, reason: \(error)")
+                    }
+                    return photo
                 }
                 try await photoRepo.insert(photos: photos, in: album)
             } catch {

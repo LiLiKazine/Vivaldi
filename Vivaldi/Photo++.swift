@@ -12,8 +12,18 @@ import ArchiverKit
 extension Photo {
     
     func retriver() -> DataRetriver {
+        if let thumbRelativePath {
+            return LocalDataRetriver(relativePath: thumbRelativePath)
+        }
         return LocalDataRetriver(relativePath: relativePath)
     }
+    
+    func backupRetriver() -> DataRetriver? {
+        if thumbRelativePath == nil { return nil }
+        return LocalDataRetriver(relativePath: relativePath)
+    }
+    
+    
     
     func savingURL() throws -> URL {
         return try Archiver.shared.savingURL(of: relativePath)

@@ -31,13 +31,18 @@ struct Thumbnail<Content>: View where Content: ThumbnailRendererView {
 struct ImageThumbnail {
     
     @Environment(\.photoInteractor) private var photoInteractor
+    @Environment(UIConfiguration.self) private var uiConfiguration
     let photo: Photo
     
     var body: some View {
         Color.white
-            .frame(height: 100)
+            .frame(
+                width: uiConfiguration.photoFrameSize.width,
+                height: uiConfiguration.photoFrameSize.height
+            )
             .overlay {
                 IKImage(retriver: photo.retriver())
+                    .backup(retriver: photo.backupRetriver())
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             }
