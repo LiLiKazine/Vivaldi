@@ -23,9 +23,11 @@ struct AlbumView: View {
             
             Text(album?.name ?? "All")
                 .truncationMode(.middle)
+                .foregroundStyle(.black)
             
             Text(album?.photoCountStr ?? "-")
                 .font(.caption)
+                .foregroundStyle(.gray)
         }
         .frame(width: 100)
     }

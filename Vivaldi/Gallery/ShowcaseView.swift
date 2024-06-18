@@ -56,6 +56,7 @@ private struct ShowCaseContainer: View {
     
     let photos: [Photo]
     
+    @State private var renamingPhoto: Photo?
     @State private var previewURL: URL?
     private var urlList: [URL] { photos.previewURLs() }
     
@@ -69,17 +70,20 @@ private struct ShowCaseContainer: View {
         ScrollVGrid(columns: columns) {
             ForEach(photos) { photo in
                 Menu {
+                    Button("Rename") {
+                        renamingPhoto = photo
+                    }
                     Button("Delete", role: .destructive) {
                         photoInteractor?.delete(photo: photo)
                     }
                 } label: {
                     VStack {
                         Thumbnail(photo: photo)
-                        EditText(photo.name) { name in
-                            photoInteractor?.change(keypath: \.name, value: name, of: photo)
-                        }
+                        Text(photo.name)
+                            .frame(height: 22)
                         .lineLimit(1)
                         .truncationMode(.middle)
+                        .foregroundStyle(.black)
                     }
                 } primaryAction: {
                     preview(photo: photo)
@@ -89,6 +93,15 @@ private struct ShowCaseContainer: View {
         }
         .padding()
         .quickLookPreview($previewURL, in: urlList)
+        .sheet(
+            item: $renamingPhoto,
+            attributes: { photo in
+                return ("Edit name", photo.name)
+            }, 
+            onConfirm: { name, photo in
+                photoInteractor?.change(keypath: \.name, value: name, of: photo)
+            }
+        )
     }
     
     private func preview(photo: Photo) {

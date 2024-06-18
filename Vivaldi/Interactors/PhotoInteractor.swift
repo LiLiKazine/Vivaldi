@@ -28,6 +28,7 @@ protocol PhotoInteractor {
     
     func create(albumWithName name: String)
     func delete(album: Album)
+    func change<Value>(keypath: ReferenceWritableKeyPath<Album, Value>, value: Value, of album: Album)
 }
 
 final class PhotoInteractorImp : PhotoInteractor {
@@ -102,5 +103,9 @@ final class PhotoInteractorImp : PhotoInteractor {
         Task {
             try await albumRepo.delete(albumById: album.id)
         }
+    }
+    
+    func change<Value>(keypath: ReferenceWritableKeyPath<Album, Value>, value: Value, of album: Album) {
+        album[keyPath: keypath] = value
     }
 }

@@ -63,11 +63,17 @@ private struct WrappedAlbumView: View {
     
     let album: Album?
     
+    @State private var isRenaming: Bool = false
+    
     @Environment(\.photoInteractor) private var photoInteractor
     
     var body: some View {
         NavigationLink(value: Optional.some(album)) {
             Menu {
+                Button("Rename") {
+                    isRenaming = true
+                }
+                .disabled(album == nil)
                 Button("Delete", role: .destructive) {
                     if let album {
                         photoInteractor?.delete(album: album)
@@ -77,6 +83,16 @@ private struct WrappedAlbumView: View {
             } label: {
                 AlbumView(album: album)
             }
+        }
+        .sheet(
+            isPresented: $isRenaming,
+            title: "Edit name",
+            hint: album?.name ?? "new name"
+        ) { name in
+            guard let album, let photoInteractor else {
+                return
+            }
+            photoInteractor.change(keypath: \.name, value: name, of: album)
         }
     }
     
