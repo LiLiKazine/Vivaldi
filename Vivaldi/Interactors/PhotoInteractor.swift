@@ -21,8 +21,8 @@ extension EnvironmentValues {
 protocol PhotoInteractor {
     
     func onPick(items: [LoadableTranferable], in album: Album?, thumbnailHeight: CGFloat?)
-    func delete(photo: Photo)
-    func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo)
+    func delete(document: Document)
+    func change<Value>(keypath: ReferenceWritableKeyPath<Document, Value>, value: Value, of document: Document)
     
     func create(albumWithName name: String)
     func delete(album: Album)

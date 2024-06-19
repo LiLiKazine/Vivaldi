@@ -9,7 +9,7 @@ import Foundation
 import ImageKit
 import ArchiverKit
 
-extension Photo {
+extension Document {
     
     func retriver() -> DataRetriver {
         if let thumbRelativePath {
@@ -31,7 +31,7 @@ extension Photo {
     
 }
 
-extension Array where Element == Photo {
+extension Array where Element == Document {
     
     func previewURLs() -> [URL] {
         do {

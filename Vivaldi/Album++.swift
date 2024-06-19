@@ -9,6 +9,6 @@ import Foundation
 
 extension Album {
     
-    var photoCountStr: String { String(photos.count) }
+    var docCountStr: String { String(documents.count) }
     
 }

@@ -13,8 +13,8 @@ struct AlbumView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let lastPhoto = album?.photos.last {
-                Thumbnail(photo: lastPhoto)
+            if let last = album?.documents.last {
+                Thumbnail(document: last)
             } else {
                 Image(systemName: "rectangle.stack.badge.plus")
                     .resizable()
@@ -25,7 +25,7 @@ struct AlbumView: View {
                 .truncationMode(.middle)
                 .foregroundStyle(.black)
             
-            Text(album?.photoCountStr ?? "-")
+            Text(album?.docCountStr ?? "-")
                 .font(.caption)
                 .foregroundStyle(.gray)
         }

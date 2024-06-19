@@ -24,7 +24,7 @@ final class PhotoInteractorImp : PhotoInteractor {
     func onPick(items: [LoadableTranferable], in album: Album?, thumbnailHeight: CGFloat?) {
         Task {
             do {
-                let photos = try await items.asyncCompactMap { item -> Photo? in
+                let photos = try await items.asyncCompactMap { item -> Document? in
                     guard let preferredType = item.supportedContentTypes.first else {
                         //TODO: throw error
                         return nil
@@ -35,31 +35,31 @@ final class PhotoInteractorImp : PhotoInteractor {
                     }
                     let name = item.itemIdentifier ?? "untitled"
                     let relativePath = try data.ak.store(using: name, suffix: preferredType.preferredFilenameExtension)
-                    let photo = Photo(name: name, relativePath: relativePath)
+                    let photo = Document(photoName: name, relativePath: relativePath)
                     do {
                         if let thumbnailHeight,
                            let thumbnail = data.ik.jpeg(ratio: .fixedHeight(thumbnailHeight), quality: 0.5) {
                             let thumbRelativePath = try thumbnail.ak.store(using: "\(name)_thumb", suffix: "jpeg")
-                            photo.thumbRelativePath = thumbRelativePath
+                            photo.media.update(value: thumbRelativePath, of: \.thumbRelativePath)
                         }
                     } catch {
                         print("Store thumnail failed, reason: \(error)")
                     }
                     return photo
                 }
-                try await photoRepo.insert(photos: photos, in: album)
+                try await photoRepo.insert(documents: photos, in: album)
             } catch {
                 print("Insert failed: \(error)")
             }
         }
     }
     
-    func delete(photo: Photo) {
+    func delete(document: Document) {
         Task {
             do {
-                try await photoRepo.delete(photoById: photo.id)
-                try Archiver.shared.delete(at: photo.relativePath)
-                if let thumbRelativePath = photo.thumbRelativePath {
+                try await photoRepo.delete(documentById: document.id)
+                try Archiver.shared.delete(at: document.relativePath)
+                if let thumbRelativePath = document.thumbRelativePath {
                     try Archiver.shared.delete(at: thumbRelativePath)
                 }
             } catch {
@@ -68,8 +68,8 @@ final class PhotoInteractorImp : PhotoInteractor {
         }
     }
     
-    func change<Value>(keypath: ReferenceWritableKeyPath<Photo, Value>, value: Value, of photo: Photo) {
-        photo[keyPath: keypath] = value
+    func change<Value>(keypath: ReferenceWritableKeyPath<Document, Value>, value: Value, of document: Document) {
+        document[keyPath: keypath] = value
     }
     
     func create(albumWithName name: String) {

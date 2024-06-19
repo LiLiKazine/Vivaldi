@@ -14,8 +14,8 @@ final class Album {
     var date: Date
     var name: String
     var star: Bool = false
-    @Relationship(deleteRule: .noAction, inverse: \Photo.albums)
-    var photos: [Photo] = []
+    @Relationship(deleteRule: .noAction, inverse: \Document.albums)
+    var documents: [Document] = []
     
     init(date: Date = Date(), name: String = "untitled") {
         self.date = date

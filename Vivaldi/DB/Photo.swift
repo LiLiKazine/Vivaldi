@@ -9,21 +9,13 @@
 import Foundation
 import SwiftData
 
-
-@Model 
-final class Photo {
-    var date: Date
-    var name: String
-    var star: Bool = false
-    var pin: Bool = false
-    var albums: [Album] = []
+struct Photo: Codable {
     var relativePath: String
     var thumbRelativePath: String?
     
-    init(date: Date = Date(), name: String = "untitled", relativePath: String) {
-        self.date = date
-        self.name = name
+    init(relativePath: String, thumbRelativePath: String? = nil) {
         self.relativePath = relativePath
+        self.thumbRelativePath = thumbRelativePath
     }
     
 }

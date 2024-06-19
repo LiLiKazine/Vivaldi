@@ -13,7 +13,7 @@ class LocalContainer {
     static let sharedContainer : ModelContainer = {
         do {
             return try ModelContainer(
-                for: Photo.self, Album.self,
+                for: Document.self, Album.self,
                 configurations: ModelConfiguration(), ModelConfiguration()
             )
         } catch {

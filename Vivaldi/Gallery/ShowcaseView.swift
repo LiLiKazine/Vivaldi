@@ -39,26 +39,26 @@ struct ShowcaseView: View {
 }
 
 private struct AllPhotoShowcaseView: View {
-    @Query(sort: \Photo.date) private var photos: [Photo]
+    @Query(sort: \Document.date) private var documents: [Document]
     var body: some View {
-        ShowCaseContainer(photos: photos)
+        ShowCaseContainer(documents: documents)
     }
 }
 
 private struct PhotoInAlbumShowcaseView: View {
     let album: Album
     var body: some View {
-        ShowCaseContainer(photos: album.photos)
+        ShowCaseContainer(documents: album.documents)
     }
 }
 
 private struct ShowCaseContainer: View {
     
-    let photos: [Photo]
+    let documents: [Document]
     
-    @State private var renamingPhoto: Photo?
+    @State private var renamingDoc: Document?
     @State private var previewURL: URL?
-    private var urlList: [URL] { photos.previewURLs() }
+    private var urlList: [URL] { documents.previewURLs() }
     
     private var columnCount: Int { uiConfiguration.photoColumns }
     private var columns: [GridItem] { Array(0..<columnCount).map { _ in GridItem() } }
@@ -68,25 +68,25 @@ private struct ShowCaseContainer: View {
 
     var body: some View {
         ScrollVGrid(columns: columns) {
-            ForEach(photos) { photo in
+            ForEach(documents) { document in
                 Menu {
                     Button("Rename") {
-                        renamingPhoto = photo
+                        renamingDoc = document
                     }
                     Button("Delete", role: .destructive) {
-                        photoInteractor?.delete(photo: photo)
+                        photoInteractor?.delete(document: document)
                     }
                 } label: {
                     VStack {
-                        Thumbnail(photo: photo)
-                        Text(photo.name)
+                        Thumbnail(document: document)
+                        Text(document.name)
                             .frame(height: 22)
                         .lineLimit(1)
                         .truncationMode(.middle)
                         .foregroundStyle(.black)
                     }
                 } primaryAction: {
-                    preview(photo: photo)
+                    preview(document: document)
                 }
 
             }
@@ -94,19 +94,19 @@ private struct ShowCaseContainer: View {
         .padding()
         .quickLookPreview($previewURL, in: urlList)
         .sheet(
-            item: $renamingPhoto,
-            attributes: { photo in
-                return ("Edit name", photo.name)
-            }, 
-            onConfirm: { name, photo in
-                photoInteractor?.change(keypath: \.name, value: name, of: photo)
+            item: $renamingDoc,
+            attributes: { document in
+                return ("Edit name", document.name)
+            },
+            onConfirm: { name, document in
+                photoInteractor?.change(keypath: \.name, value: name, of: document)
             }
         )
     }
     
-    private func preview(photo: Photo) {
+    private func preview(document: Document) {
         do {
-            previewURL = try photo.savingURL()
+            previewURL = try document.savingURL()
         } catch {
             print(error)
         }

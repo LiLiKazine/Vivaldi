@@ -32,7 +32,7 @@ struct ImageThumbnail {
     
     @Environment(\.photoInteractor) private var photoInteractor
     @Environment(UIConfiguration.self) private var uiConfiguration
-    let photo: Photo
+    let document: Document
     
     var body: some View {
         Color.white
@@ -41,8 +41,8 @@ struct ImageThumbnail {
                 height: uiConfiguration.photoFrameSize.height
             )
             .overlay {
-                IKImage(retriver: photo.retriver())
-                    .backup(retriver: photo.backupRetriver())
+                IKImage(retriver: document.retriver())
+                    .backup(retriver: document.backupRetriver())
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             }
@@ -51,17 +51,17 @@ struct ImageThumbnail {
     
 }
 extension ImageThumbnail : ThumbnailRendererView {
-    static func create(from context: Photo) -> ImageThumbnail {
-        ImageThumbnail(photo: context)
+    static func create(from context: Document) -> ImageThumbnail {
+        ImageThumbnail(document: context)
     }
 }
 
 extension Thumbnail where Content == ImageThumbnail {
-    init(photo: Photo) {
-        self.init(context: photo)
+    init(document: Document) {
+        self.init(context: document)
     }
 }
 
 #Preview {
-    Thumbnail(photo: Photo(name: "", relativePath: ""))
+    Thumbnail(document: .init(photoName: "", relativePath: ""))
 }
