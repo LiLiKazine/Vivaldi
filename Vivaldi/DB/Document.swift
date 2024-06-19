@@ -14,7 +14,7 @@ final class Document {
     var name: String
     var star: Bool = false
     var pin: Bool = false
-    var albums: [Album] = []
+    var folders: [Folder] = []
     var media: Media
     
     init(name: String, media: Media) {

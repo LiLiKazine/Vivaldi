@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Album {
+extension Folder {
     
     var docCountStr: String { String(documents.count) }
     

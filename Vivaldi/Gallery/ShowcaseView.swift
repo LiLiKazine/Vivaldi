@@ -11,7 +11,7 @@ import SwiftData
 
 struct ShowcaseView: View {
     
-    let album: Album?
+    let album: Folder?
     
     @Environment(\.photoInteractor) private var photoInteractor
     @Environment(UIConfiguration.self) private var uiConfiguration
@@ -46,7 +46,7 @@ private struct AllPhotoShowcaseView: View {
 }
 
 private struct PhotoInAlbumShowcaseView: View {
-    let album: Album
+    let album: Folder
     var body: some View {
         ShowCaseContainer(documents: album.documents)
     }

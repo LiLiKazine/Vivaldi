@@ -10,7 +10,7 @@ import SwiftData
 
 struct AlbumCollectionView: View {
     
-    @Query(sort: \Album.date) private var albums: [Album]
+    @Query(sort: \Folder.date) private var albums: [Folder]
     
     @Environment(\.modelContext) private var modelContext
     @Environment(\.photoInteractor) private var photoInteractor
@@ -33,7 +33,7 @@ struct AlbumCollectionView: View {
         .sheet(isPresented: $presentAlbumCreationSheet, title: "Create album", hint: "name") { name in
             saveAlbum(with: name)
         }
-        .navigationDestination(for: Album?.self) { album in
+        .navigationDestination(for: Folder?.self) { album in
             ShowcaseView(album: album)
                 .environment(\.modelContext, modelContext)
                 .environment(\.photoInteractor, photoInteractor)
@@ -61,7 +61,7 @@ extension AlbumCollectionView {
 
 private struct WrappedAlbumView: View {
     
-    let album: Album?
+    let album: Folder?
     
     @State private var isRenaming: Bool = false
     

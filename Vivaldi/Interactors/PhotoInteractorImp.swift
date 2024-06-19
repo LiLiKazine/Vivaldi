@@ -14,14 +14,14 @@ import ArchiverKit
 final class PhotoInteractorImp : PhotoInteractor {
     
     let photoRepo: PhotoRepository
-    let albumRepo: AlbumRepository
+    let albumRepo: FolderRepository
     
-    init(photoRepo: PhotoRepository, albumRepo: AlbumRepository) {
+    init(photoRepo: PhotoRepository, albumRepo: FolderRepository) {
         self.photoRepo = photoRepo
         self.albumRepo = albumRepo
     }
     
-    func onPick(items: [LoadableTranferable], in album: Album?, thumbnailHeight: CGFloat?) {
+    func onPick(items: [LoadableTranferable], in album: Folder?, thumbnailHeight: CGFloat?) {
         Task {
             do {
                 let photos = try await items.asyncCompactMap { item -> Document? in
@@ -74,22 +74,22 @@ final class PhotoInteractorImp : PhotoInteractor {
     
     func create(albumWithName name: String) {
         Task {
-            let album = Album(name: name)
+            let album = Folder(name: name)
             do {
-                try await albumRepo.create(album: album)
+                try await albumRepo.create(folder: album)
             } catch {
                 print("Create album with name: \(name) failed, error: \(error)")
             }
         }
     }
     
-    func delete(album: Album) {
+    func delete(album: Folder) {
         Task {
-            try await albumRepo.delete(albumById: album.id)
+            try await albumRepo.delete(folderById: album.id)
         }
     }
     
-    func change<Value>(keypath: ReferenceWritableKeyPath<Album, Value>, value: Value, of album: Album) {
+    func change<Value>(keypath: ReferenceWritableKeyPath<Folder, Value>, value: Value, of album: Folder) {
         album[keyPath: keypath] = value
     }
 }

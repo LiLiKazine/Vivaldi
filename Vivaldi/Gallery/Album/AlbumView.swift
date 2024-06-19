@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumView: View {
     
-    let album: Album?
+    let album: Folder?
     
     var body: some View {
         VStack(alignment: .leading) {

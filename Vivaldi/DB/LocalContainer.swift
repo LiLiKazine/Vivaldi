@@ -13,7 +13,7 @@ class LocalContainer {
     static let sharedContainer : ModelContainer = {
         do {
             return try ModelContainer(
-                for: Document.self, Album.self,
+                for: Document.self, Folder.self,
                 configurations: ModelConfiguration(), ModelConfiguration()
             )
         } catch {
@@ -26,11 +26,11 @@ class LocalContainer {
         return PhotoRepositoryImp(modelContainer: sharedContainer)
     }()
     
-    static let sharedAlbumRepo : AlbumRepository = {
-        return AlbumRepositoryImp(modelContainer: sharedContainer)
+    static let sharedFolderRepo : FolderRepository = {
+        return FolderRepositoryImp(modelContainer: sharedContainer)
     }()
     
     static let sharedPhotoInteractor : PhotoInteractor = {
-        return PhotoInteractorImp(photoRepo: sharedPhotoRepo, albumRepo: sharedAlbumRepo)
+        return PhotoInteractorImp(photoRepo: sharedPhotoRepo, albumRepo: sharedFolderRepo)
     }()
 }
