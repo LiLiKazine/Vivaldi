@@ -68,13 +68,13 @@ private struct ShowCaseContainer: View {
     private var urlList: [URL] { documents.previewURLs() }
     
     private var columnCount: Int { uiConfiguration.photoColumns }
-    private var columns: [GridItem] { Array(0..<columnCount).map { _ in GridItem() } }
+    private var columns: [GridItem] { Array(0..<columnCount).map { _ in GridItem(spacing: 1) } }
     
     @Environment(UIConfiguration.self) private var uiConfiguration
     @Environment(\.photoInteractor) private var photoInteractor
 
     var body: some View {
-        ScrollVGrid(columns: columns) {
+        ScrollVGrid(columns: columns, spacing: 1) {
             ForEach(documents) { document in
                 Menu {
                     Button("Rename") {
@@ -84,18 +84,17 @@ private struct ShowCaseContainer: View {
                         photoInteractor?.delete(document: document)
                     }
                 } label: {
-                    VStack {
-                        Thumbnail(document: document)
-                        Text(document.name)
-                            .frame(height: 22)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                        .foregroundStyle(.black)
-                    }
+                    Thumbnail(document: document)
+//                    VStack {
+//                        Text(document.name)
+//                            .frame(height: 22)
+//                        .lineLimit(1)
+//                        .truncationMode(.middle)
+//                        .foregroundStyle(.black)
+//                    }
                 } primaryAction: {
                     preview(document: document)
                 }
-
             }
         }
         .padding()
