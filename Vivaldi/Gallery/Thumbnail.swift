@@ -67,9 +67,7 @@ extension Video: ThumbnailRenderer {
 }
 
 struct VideoPreview: View {
-    
-    @IKVideo.ControlAction var control
-    
+        
     let video: Video
     @Environment(UIConfiguration.self) private var uiConfiguration
     @IKVideo.ControlAction private var action
