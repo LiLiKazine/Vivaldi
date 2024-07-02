@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,6 @@
 		2205663A2C0CA5E800AFA143 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220566392C0CA5E800AFA143 /* Thumbnail.swift */; };
 		2205663E2C0CAB6200AFA143 /* Photo++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205663D2C0CAB6200AFA143 /* Photo++.swift */; };
 		220566422C0CAD3600AFA143 /* EditText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220566412C0CAD3600AFA143 /* EditText.swift */; };
-		2268E43A2C0F3F3600337E07 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2268E4392C0F3F3600337E07 /* ImageKit */; };
 		22AD90672C0F4B4A00D2C162 /* ScrollGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90662C0F4B4A00D2C162 /* ScrollGrid.swift */; };
 		22AD906B2C10976800D2C162 /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD906A2C10976800D2C162 /* PhotoRepository.swift */; };
 		22AD906D2C11B1CE00D2C162 /* LocalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD906C2C11B1CE00D2C162 /* LocalContainer.swift */; };
@@ -34,6 +33,8 @@
 		22AD90C42C22AF7900D2C162 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90C32C22AF7900D2C162 /* Video.swift */; };
 		22AD90C62C22CA5100D2C162 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90C52C22CA5100D2C162 /* Document.swift */; };
 		22AD90C82C22CED500D2C162 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD90C72C22CED500D2C162 /* Media.swift */; };
+		22AF94CF2C32E29F006BDF50 /* ArchiverKit in Frameworks */ = {isa = PBXBuildFile; productRef = 22AF94CE2C32E29F006BDF50 /* ArchiverKit */; };
+		22AF94D22C32E2A9006BDF50 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 22AF94D12C32E2A9006BDF50 /* ImageKit */; };
 		22F530362B1592890094C4B1 /* VivaldiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530352B1592890094C4B1 /* VivaldiApp.swift */; };
 		22F530382B1592890094C4B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F530372B1592890094C4B1 /* ContentView.swift */; };
 		22F5303C2B15928A0094C4B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F5303B2B15928A0094C4B1 /* Assets.xcassets */; };
@@ -84,7 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2268E43A2C0F3F3600337E07 /* ImageKit in Frameworks */,
+				22AF94CF2C32E29F006BDF50 /* ArchiverKit in Frameworks */,
+				22AF94D22C32E2A9006BDF50 /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +246,8 @@
 			);
 			name = Vivaldi;
 			packageProductDependencies = (
-				2268E4392C0F3F3600337E07 /* ImageKit */,
+				22AF94CE2C32E29F006BDF50 /* ArchiverKit */,
+				22AF94D12C32E2A9006BDF50 /* ImageKit */,
 			);
 			productName = Vivaldi;
 			productReference = 22F530322B1592890094C4B1 /* Vivaldi.app */;
@@ -275,7 +278,8 @@
 			);
 			mainGroup = 22F530292B1592890094C4B1;
 			packageReferences = (
-				2268E4382C0F3F3600337E07 /* XCRemoteSwiftPackageReference "ImageKit" */,
+				22AF94CD2C32E29F006BDF50 /* XCLocalSwiftPackageReference "../ArchiverKit" */,
+				22AF94D02C32E2A9006BDF50 /* XCLocalSwiftPackageReference "../ImageKit" */,
 			);
 			productRefGroup = 22F530332B1592890094C4B1 /* Products */;
 			projectDirPath = "";
@@ -543,21 +547,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		2268E4382C0F3F3600337E07 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LiLiKazine/ImageKit.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		22AF94CD2C32E29F006BDF50 /* XCLocalSwiftPackageReference "../ArchiverKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ArchiverKit;
 		};
-/* End XCRemoteSwiftPackageReference section */
+		22AF94D02C32E2A9006BDF50 /* XCLocalSwiftPackageReference "../ImageKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ImageKit;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2268E4392C0F3F3600337E07 /* ImageKit */ = {
+		22AF94CE2C32E29F006BDF50 /* ArchiverKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2268E4382C0F3F3600337E07 /* XCRemoteSwiftPackageReference "ImageKit" */;
+			productName = ArchiverKit;
+		};
+		22AF94D12C32E2A9006BDF50 /* ImageKit */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = ImageKit;
 		};
 /* End XCSwiftPackageProductDependency section */

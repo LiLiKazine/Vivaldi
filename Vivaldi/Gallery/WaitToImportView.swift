@@ -19,7 +19,7 @@ struct WaitToImportView: View {
     
     init(
         maxSelectionCount: Int? = nil,
-        matching: PHPickerFilter? = .images,
+        matching: PHPickerFilter? = .any(of: [.images, .videos]),
         onSelected: @escaping ([PhotosPickerItem]) -> Void
     ) {
         self.maxSelectionCount = maxSelectionCount

@@ -10,9 +10,9 @@ import SwiftData
 
 struct Video: Codable {
     var relativePath: String
-    var coverRelativePath: String
+    var coverRelativePath: String?
     
-    init(relativePath: String, coverRelativePath: String) {
+    init(relativePath: String, coverRelativePath: String? = nil) {
         self.relativePath = relativePath
         self.coverRelativePath = coverRelativePath
     }

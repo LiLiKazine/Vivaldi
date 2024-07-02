@@ -7,32 +7,41 @@
 
 import SwiftUI
 import ImageKit
+import ArchiverKit
 
-protocol ThumbnailRendererView: View {
-    associatedtype Context
-    static func create(from context: Context) -> Self
+protocol ThumbnailRenderer {
+    associatedtype Content: View
+    func render() -> Content
 }
 
-struct Thumbnail<Content>: View where Content: ThumbnailRendererView {
+struct Thumbnail: View {
     
-    private let context: Content.Context
+    private let document: Document
     
-    init(context: Content.Context) {
-        self.context = context
+    init(document: Document) {
+        self.document = document
     }
     
     var body: some View {
-        VStack {
-            Content.create(from: context)
+        switch document.media {
+        case .photo(let photo):
+            photo.render()
+        case .video(let video):
+            video.render()
         }
     }
 }
 
-struct ImageThumbnail {
+extension Photo: ThumbnailRenderer {
+    func render() -> ImageThumbnail {
+        ImageThumbnail(photo: self)
+    }
+}
+
+struct ImageThumbnail: View {
     
-    @Environment(\.photoInteractor) private var photoInteractor
     @Environment(UIConfiguration.self) private var uiConfiguration
-    let document: Document
+    let photo: Photo
     
     var body: some View {
         Color.white
@@ -41,27 +50,40 @@ struct ImageThumbnail {
                 height: uiConfiguration.photoFrameSize.height
             )
             .overlay {
-                IKImage(retriver: document.retriver())
-                    .backup(retriver: document.backupRetriver())
+                IKImage(retriver: photo.retriver())
+                    .backup(retriver: photo.backupRetriver())
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             }
             .clipped()
     }
+}
+
+extension Video: ThumbnailRenderer {
+    func render() -> VideoPreview {
+        VideoPreview(video: self)
+    }
+}
+
+struct VideoPreview: View {
     
-}
-extension ImageThumbnail : ThumbnailRendererView {
-    static func create(from context: Document) -> ImageThumbnail {
-        ImageThumbnail(document: context)
+    let video: Video
+    
+    var body: some View {
+        switch url(from: video) {
+        case .success(let url):
+            IKVideo(url: url)
+        case .failure(let error):
+            Text("Error: \(error.localizedDescription)")
+        }
     }
-}
-
-extension Thumbnail where Content == ImageThumbnail {
-    init(document: Document) {
-        self.init(context: document)
+    
+    private func url(from video: Video) -> Result<URL, Error> {
+        do {
+            let url = try Archiver.shared.savingURL(of: video.relativePath)
+            return .success(url)
+        } catch {
+            return .failure(error)
+        }
     }
-}
-
-#Preview {
-    Thumbnail(document: .init(photoName: "", relativePath: ""))
 }

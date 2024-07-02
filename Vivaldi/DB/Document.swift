@@ -26,7 +26,7 @@ final class Document {
         self.init(name: photoName, media: .photo(.init(relativePath: relativePath)))
     }
     
-    convenience init(videoName: String, relativePath: String, coverRelativePath: String) {
+    convenience init(videoName: String, relativePath: String, coverRelativePath: String? = nil) {
         self.init(name: videoName, media: .video(.init(relativePath: relativePath, coverRelativePath: coverRelativePath)))
     }
 }
@@ -42,10 +42,10 @@ extension Document {
     }
     
     var thumbRelativePath: String? {
-        media.value(of: \.thumbRelativePath) ?? nil
+        media.photo?.thumbRelativePath
     }
     
     var coverRelativePath: String? {
-        media.value(of: \.coverRelativePath)
+        media.video?.coverRelativePath
     }
 }

@@ -5,7 +5,7 @@
 //  Created by LiLi on 2024/6/18.
 //
 
-import Foundation
+import UIKit
 import SwiftData
 import ImageKit
 import ArchiverKit
@@ -21,10 +21,10 @@ final class PhotoInteractorImp : PhotoInteractor {
         self.albumRepo = albumRepo
     }
     
-    func onPick(items: [LoadableTranferable], in album: Folder?, thumbnailHeight: CGFloat?) {
+    func onPick(items: [LoadableTranferable], in folder: Folder?, thumbnailHeight: CGFloat?) {
         Task {
             do {
-                let photos = try await items.asyncCompactMap { item -> Document? in
+                let documents = try await items.asyncCompactMap { item -> Document? in
                     guard let preferredType = item.supportedContentTypes.first else {
                         //TODO: throw error
                         return nil
@@ -35,19 +35,18 @@ final class PhotoInteractorImp : PhotoInteractor {
                     }
                     let name = item.itemIdentifier ?? "untitled"
                     let relativePath = try data.ak.store(using: name, suffix: preferredType.preferredFilenameExtension)
-                    let photo = Document(photoName: name, relativePath: relativePath)
-                    do {
-                        if let thumbnailHeight,
-                           let thumbnail = data.ik.jpeg(ratio: .fixedHeight(thumbnailHeight), quality: 0.5) {
-                            let thumbRelativePath = try thumbnail.ak.store(using: "\(name)_thumb", suffix: "jpeg")
-                            photo.media.update(value: thumbRelativePath, of: \.thumbRelativePath)
-                        }
-                    } catch {
-                        print("Store thumnail failed, reason: \(error)")
+                    if preferredType.conforms(to: .image) {
+                        return photo(data, name: name, relativePath: relativePath, folder: folder, thumbnailHeight: thumbnailHeight)
                     }
-                    return photo
+                    else if preferredType.conforms(to: .movie) {
+                        return await video(data, name: name, relativePath: relativePath, folder: folder, thumbnailHeight: thumbnailHeight)
+                    }
+                    else {
+                        //TODO: throw error
+                    }
+                    return nil
                 }
-                try await photoRepo.insert(documents: photos, in: album)
+                try await photoRepo.insert(documents: documents, in: folder)
             } catch {
                 print("Insert failed: \(error)")
             }
@@ -92,4 +91,43 @@ final class PhotoInteractorImp : PhotoInteractor {
     func change<Value>(keypath: ReferenceWritableKeyPath<Folder, Value>, value: Value, of album: Folder) {
         album[keyPath: keypath] = value
     }
+}
+
+private extension PhotoInteractorImp {
+    
+    func video(_ data: Data, name: String, relativePath: String, folder: Folder?, thumbnailHeight: CGFloat?) async -> Document {
+        let video = Document(videoName: name, relativePath: relativePath)
+        do {
+            if let thumbnailHeight {
+                let boundingSize = CGSize(width: .greatestFiniteMagnitude, height: thumbnailHeight)
+                let url = try Archiver.shared.savingURL(of: relativePath)
+                let cover = try await url.ik.cover(maxiumSize: boundingSize)
+                if let data = UIImage(cgImage: cover).jpegData(compressionQuality: 1) {
+                   let coverRelativePath = try data.ak.store(using: "\(name)_cover", suffix: "jpeg")
+                    video.media.update(value: coverRelativePath, of: \.coverRelativePath)
+                } else {
+                    print("Generate jpeg data failed.")
+                }
+            }
+        } catch {
+            print("Store cover failed, reason: \(error)")
+        }
+        
+        return video
+    }
+    
+    func photo(_ data: Data, name: String, relativePath: String, folder: Folder?, thumbnailHeight: CGFloat?) -> Document {
+        let photo = Document(photoName: name, relativePath: relativePath)
+        do {
+            if let thumbnailHeight,
+               let thumbnail = data.ik.jpeg(ratio: .fixedHeight(thumbnailHeight), quality: 0.5) {
+                let thumbRelativePath = try thumbnail.ak.store(using: "\(name)_thumb", suffix: "jpeg")
+                photo.media.update(value: thumbRelativePath, of: \.thumbRelativePath)
+            }
+        } catch {
+            print("Store thumnail failed, reason: \(error)")
+        }
+        return photo
+    }
+    
 }

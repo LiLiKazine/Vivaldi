@@ -9,7 +9,7 @@ import Foundation
 import ImageKit
 import ArchiverKit
 
-extension Document {
+extension Photo {
     
     func retriver() -> DataRetriver {
         if let thumbRelativePath {
@@ -22,8 +22,10 @@ extension Document {
         if thumbRelativePath == nil { return nil }
         return LocalDataRetriver(relativePath: relativePath)
     }
-    
-    
+
+}
+
+extension Document {
     
     func savingURL() throws -> URL {
         return try Archiver.shared.savingURL(of: relativePath)

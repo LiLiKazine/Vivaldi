@@ -34,18 +34,18 @@ extension Media {
         }
     }
     
-    func value<Value>(of keyPath: KeyPath<Photo, Value>) -> Value? {
-        guard case let .photo(photo) = self else {
+    var photo: Photo? {
+        guard case .photo(let photo) = self else {
             return nil
         }
-        return photo[keyPath: keyPath]
+        return photo
     }
     
-    func value<Value>(of keyPath: KeyPath<Video, Value>) -> Value? {
-        guard case let .video(video) = self else {
+    var video: Video? {
+        guard case .video(let video) = self else {
             return nil
         }
-        return video[keyPath: keyPath]
+        return video
     }
     
     @discardableResult

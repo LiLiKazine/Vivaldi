@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct VivaldiApp: App {
     
-    @State private var uiConfiguration = UIConfiguration()
+    @State private var uiConfiguration = UIConfiguration.shared
     
     var body: some Scene {
         WindowGroup {
