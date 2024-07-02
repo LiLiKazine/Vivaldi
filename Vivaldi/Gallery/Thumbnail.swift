@@ -80,9 +80,6 @@ struct VideoPreview: View {
             case .success(let source):
                 IKVideo(localVideo: source, controlVisiblity: .alwaysHide)
                     .control($action)
-                    .onAppear {
-                        action = .play
-                    }
             case .failure(let error):
                 Text("Error: \(error.localizedDescription)")
             }
