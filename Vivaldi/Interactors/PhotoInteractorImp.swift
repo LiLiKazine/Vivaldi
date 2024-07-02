@@ -9,7 +9,7 @@ import UIKit
 import SwiftData
 import ImageKit
 import ArchiverKit
-
+import AVKit
 
 final class PhotoInteractorImp : PhotoInteractor {
     
@@ -98,10 +98,17 @@ private extension PhotoInteractorImp {
     func video(_ data: Data, name: String, relativePath: String, folder: Folder?, thumbnailHeight: CGFloat?) async -> Document {
         let video = Document(videoName: name, relativePath: relativePath)
         do {
+            let url = try Archiver.shared.savingURL(of: relativePath)
+            let asset = AVURLAsset(url: url)
+            do {
+                let duration = try await asset.load(.duration)
+                video.media.update(value: duration.seconds, of: \.duration)
+            } catch {
+                print("load duration failed, reason: \(error)")
+            }
             if let thumbnailHeight {
                 let boundingSize = CGSize(width: .greatestFiniteMagnitude, height: thumbnailHeight)
-                let url = try Archiver.shared.savingURL(of: relativePath)
-                let cover = try await url.ik.cover(maxiumSize: boundingSize)
+                                let cover = try await asset.ik.cover(maxiumSize: boundingSize)
                 if let data = UIImage(cgImage: cover).jpegData(compressionQuality: 1) {
                    let coverRelativePath = try data.ak.store(using: "\(name)_cover", suffix: "jpeg")
                     video.media.update(value: coverRelativePath, of: \.coverRelativePath)

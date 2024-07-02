@@ -109,10 +109,11 @@ private struct VideoSource: LocalVideo {
     let url: URL
     let coverRelativePath: String?
     
-    var duration: CMTime? { nil }
+    var duration: CMTime?
     
     init(video: Video) throws {
         url = try Archiver.shared.savingURL(of: video.relativePath)
         coverRelativePath = video.coverRelativePath
+        duration = .init(seconds: video.duration, preferredTimescale: 1)
     }
 }
