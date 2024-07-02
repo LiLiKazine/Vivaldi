@@ -8,7 +8,7 @@
 import SwiftUI
 import ImageKit
 import ArchiverKit
-import CoreMedia.CMTime
+import AVKit
 
 protocol ThumbnailRenderer {
     associatedtype Content: View
@@ -68,14 +68,21 @@ extension Video: ThumbnailRenderer {
 
 struct VideoPreview: View {
     
+    @IKVideo.ControlAction var control
+    
     let video: Video
     @Environment(UIConfiguration.self) private var uiConfiguration
-    
+    @IKVideo.ControlAction private var action
+        
     var body: some View {
         Group {
             switch source(from: video) {
             case .success(let source):
                 IKVideo(localVideo: source, controlVisiblity: .alwaysHide)
+                    .control($action)
+                    .onAppear {
+                        action = .play
+                    }
             case .failure(let error):
                 Text("Error: \(error.localizedDescription)")
             }

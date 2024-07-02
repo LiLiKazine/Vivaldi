@@ -13,9 +13,7 @@ import ImageKit
 struct ShowcaseView: View {
     
     let album: Folder?
-    
-    @State private var currentPlaying = PlayingVideo.shared
-    
+        
     @Environment(\.photoInteractor) private var photoInteractor
     @Environment(UIConfiguration.self) private var uiConfiguration
     
@@ -29,7 +27,6 @@ struct ShowcaseView: View {
                     .navigationTitle("All")
             }
         }
-        .environment(currentPlaying)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 WaitToImportView { items in
@@ -46,9 +43,6 @@ private struct AllPhotoShowcaseView: View {
     @Query(sort: \Document.date) private var documents: [Document]
     var body: some View {
         ShowCaseContainer(documents: documents)
-            .task {
-                print(documents)
-            }
     }
 }
 
