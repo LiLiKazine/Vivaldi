@@ -10,16 +10,17 @@ import SwiftData
 
 struct ContentView: View {
     
-    @EnvironmentObject var lockState: LockState
+    @Environment(LockState.self) var lockState
 
     var body: some View {
-        if lockState.isLocked {
-            AuthView()
-        } else {
-            NavigationStack {
-                GalleryView()        
-                    .modelContainer(LocalContainer.sharedContainer)
-                    .environment(\.photoInteractor, LocalContainer.sharedPhotoInteractor)
+        NavigationStack {
+            GalleryView()
+                .modelContainer(LocalContainer.sharedContainer)
+                .environment(\.photoInteractor, LocalContainer.sharedPhotoInteractor)
+        }
+        .overlay {
+            if lockState.isLocked {
+                AuthView()
             }
         }
     }
@@ -29,5 +30,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(LockState())
+        .environment(LockState.shared)
 }

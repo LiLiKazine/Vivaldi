@@ -12,12 +12,13 @@ import SwiftData
 struct VivaldiApp: App {
     
     @State private var uiConfiguration = UIConfiguration.shared
+    @State private var lockState = LockState.shared
     
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .environmentObject(LockState())
+        .environment(lockState)
         .environment(uiConfiguration)
     }
 }

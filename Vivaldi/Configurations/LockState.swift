@@ -5,8 +5,11 @@
 //  Created by LiLi on 2023/11/28.
 //
 
-import SwiftUI
+import Foundation
 
-class LockState: ObservableObject {
-    @Published var isLocked: Bool = false
+@Observable
+class LockState {
+    var isLocked: Bool = true
+    
+    static let shared = LockState()
 }

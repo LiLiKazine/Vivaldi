@@ -76,7 +76,7 @@
 		22F530372B1592890094C4B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22F5303B2B15928A0094C4B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F5303E2B15928A0094C4B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		22F530452B1592B20094C4B1 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = SOURCE_ROOT; };
+		22F530452B1592B20094C4B1 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthView.swift; path = Vivaldi/Auth/AuthView.swift; sourceTree = SOURCE_ROOT; };
 		22F5304B2B1593610094C4B1 /* LockState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +183,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		22AF94D32C36968D006BDF50 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				22F530452B1592B20094C4B1 /* AuthView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		22F530292B1592890094C4B1 = {
 			isa = PBXGroup;
 			children = (
@@ -205,7 +213,7 @@
 				22E5B90F2BE8DD6E00DF986A /* Vivaldi.entitlements */,
 				22F530352B1592890094C4B1 /* VivaldiApp.swift */,
 				22F530372B1592890094C4B1 /* ContentView.swift */,
-				22F530452B1592B20094C4B1 /* AuthView.swift */,
+				22AF94D32C36968D006BDF50 /* Auth */,
 				22AD90C92C2308CC00D2C162 /* Extensions */,
 				22AD906C2C11B1CE00D2C162 /* LocalContainer.swift */,
 				22AD90BE2C20710200D2C162 /* Configurations */,
@@ -474,7 +482,7 @@
 				DEVELOPMENT_TEAM = PJBUF7JSHK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to use your face ID for decryption";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need your face ID to unlock content.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -505,7 +513,7 @@
 				DEVELOPMENT_TEAM = PJBUF7JSHK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to use your face ID for decryption";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need your face ID to unlock content.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
